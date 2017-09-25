@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">CrusadersQuestWiki</string>
+    <string name="main_title">克鲁赛德战记wiki</string>
+
+    <string name="hero_list_title">勇士图鉴</string>
+    <string name="equipment_list_title">装备图鉴</string>
+    <string name="skill_list_title">技能图鉴</string>
+
+    <string name="warrior">剑士</string>
+    <string name="paladin">骑士</string>
+    <string name="archer">弓手</string>
+    <string name="hunter">猎人</string>
+    <string name="wizard">法师</string>
+    <string name="priest">祭司</string>
+</resources>
