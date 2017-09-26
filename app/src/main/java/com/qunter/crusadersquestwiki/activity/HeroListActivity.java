@@ -53,8 +53,8 @@ public class HeroListActivity extends BaseActivity implements View.OnClickListen
             data.setIv_imgResource(itemPicDatas[i]);
             data.setTv_content(getString(itemContentDatas[i]));
             datas.add(data);
-            handler.sendEmptyMessage(GETDATAFROMURL);
         }
+        handler.sendEmptyMessage(GETDATAFROMURL);
     }
 
     @Override
@@ -86,8 +86,11 @@ public class HeroListActivity extends BaseActivity implements View.OnClickListen
     };
     /**
      * 使用jsoup获取首页数据
+     * http://wiki.joyme.com/cq/%E5%89%91%E5%A3%AB
+     * http://wiki.joyme.com/cq/剑士
      */
     private void getDataFromUrl(){
+
         String url = "http://wiki.joyme.com/cq/剑士";
         Connection conn = Jsoup.connect(url);
         // 修改http包中的header,伪装成浏览器进行抓取
@@ -99,10 +102,15 @@ public class HeroListActivity extends BaseActivity implements View.OnClickListen
             e.printStackTrace();
         }
         if(doc==null){
-            //Log.e("getDataFromUrl", "null");
+            Log.e("getDataFromUrl", "null");
         }else{
-            /*
-            String xml = doc.toString();
+            Elements filterBase = doc.select("div[id=mw-content-text]");
+            //获取到勇士名称及头像及详情Url
+            Elements filterMostly = filterBase.select("a[title~=^★6]");
+            //获取到勇士评级
+            Elements filterRate = filterBase.select("img[data-file-height=30]");
+            /*log答应出获取到的全部内容
+            String xml = filterBase.toString();
             if(xml.length() > 4000) {
                 for(int i=0;i<xml.length();i+=4000){
                     if(i+4000<xml.length())
@@ -112,19 +120,14 @@ public class HeroListActivity extends BaseActivity implements View.OnClickListen
                 }
             } else
                 Log.i("getDataFromUrl",xml);
-*/
-            //Log.e("getDataFromUrl", doc.toString());
+            */
+            Log.e("getDataFromUrl2", filterMostly.toString());
         }
+    }
+    /**
+     * 获取勇士名称
+     */
+    private void getHeroInfoAndSave(Elements a){
 
-        Elements elements = doc.select("td[style=text-align:left]");
-        Log.e("getDataFromUrl2",elements.toString());
-        /*
-        Elements elements2 = doc.select("class[name=wikitable sortable]");
-        Log.e("getDataFromUrl2",elements2.toString());
-        /*
-        for(Element element : elements){
-            Log.e("getDataFromUrl3",element.toString());
-        }
-        */
     }
 }

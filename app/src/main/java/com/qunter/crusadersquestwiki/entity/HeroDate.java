@@ -7,9 +7,11 @@ package com.qunter.crusadersquestwiki.entity;
 public class HeroDate {
     private String HeroName;
     private int HeroLevel;
+    //暂无法高效获取
     private int HeroType;
     private int[] HeroRate = new int[5];
-    private String HeroDetail;
+    private String HeroDetailUrl;
+    private String HeroPicUrl;
 
     public String getHeroName() {
         return HeroName;
@@ -43,11 +45,20 @@ public class HeroDate {
         HeroRate[heroRateType] = heroRate;
     }
 
-    public String getHeroDetail() {
-        return HeroDetail;
+    public String getHeroDetailUrl() {
+        return HeroDetailUrl;
     }
 
-    public void setHeroDetail(String heroDetail) {
-        HeroDetail = heroDetail;
+    public void setHeroDetailUrl(String heroDetailUrl) {
+        HeroDetailUrl = heroDetailUrl;
     }
+
+    public String getHeroPicUrl() {
+        return HeroPicUrl;
+    }
+
+    public void setHeroPicUrl(String heroPicUrl) {
+        HeroPicUrl = heroPicUrl;
+    }
+
 }
