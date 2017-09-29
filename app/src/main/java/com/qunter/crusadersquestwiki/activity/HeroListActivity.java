@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import com.qunter.crusadersquestwiki.R;
 import com.qunter.crusadersquestwiki.adapter.HeroListActRecAdapter;
 import com.qunter.crusadersquestwiki.base.BaseActivity;
+import com.qunter.crusadersquestwiki.entity.HeroDate;
 import com.qunter.crusadersquestwiki.entity.HeroListActRecItemData;
 
 import org.jsoup.Connection;
@@ -32,6 +33,7 @@ public class HeroListActivity extends BaseActivity implements View.OnClickListen
     private RecyclerView recyclerView;
     private ImageView BackBtn;
     private List<HeroListActRecItemData> datas = new ArrayList<HeroListActRecItemData>();
+    private List<HeroDate> dataas = new ArrayList<HeroDate>();
     private int[] itemPicDatas = {R.drawable.ic_warrior,R.drawable.ic_paladin,R.drawable.ic_archer,R.drawable.ic_hunter,R.drawable.ic_wizard,R.drawable.ic_priest};
     private int[] itemContentDatas = {R.string.warrior,R.string.paladin,R.string.archer,R.string.hunter,R.string.wizard,R.string.priest};
     private final int GETDATAFROMURL=0x00;
@@ -87,6 +89,7 @@ public class HeroListActivity extends BaseActivity implements View.OnClickListen
     /**
      * 使用jsoup获取首页数据
      * http://wiki.joyme.com/cq/%E5%89%91%E5%A3%AB
+     * http://wiki.joyme.com/cq/%E5%85%89%E6%98%8E%E5%89%91%E5%A3%AB%E9%87%8C%E6%98%82
      * http://wiki.joyme.com/cq/剑士
      */
     private void getDataFromUrl(){
@@ -105,7 +108,7 @@ public class HeroListActivity extends BaseActivity implements View.OnClickListen
             Log.e("getDataFromUrl", "null");
         }else{
             Elements filterBase = doc.select("div[id=mw-content-text]");
-            //获取到勇士名称及头像及详情Url
+            //获取到勇士名称及头像url及详情Url
             Elements filterMostly = filterBase.select("a[title~=^★6]");
             //获取到勇士评级
             Elements filterRate = filterBase.select("img[data-file-height=30]");
@@ -121,13 +124,44 @@ public class HeroListActivity extends BaseActivity implements View.OnClickListen
             } else
                 Log.i("getDataFromUrl",xml);
             */
-            Log.e("getDataFromUrl2", filterMostly.toString());
+            HeroDate data;
+            for(Element element:filterMostly){
+                data = new HeroDate();
+                data.setHeroDetailUrl(element.absUrl("href"));
+                data.setHeroName(element.attr("title").substring(3));
+                //Log.e("element",element.attr("title").substring(3));
+                data.setHeroPicUrl(element.absUrl("src"));
+                dataas.add(data);
+            }
+            for(int i=0;i<filterRate.size()/5;i++){
+                for(int j=0;j<5;j++){
+                    dataas.get(i).setHeroRate(j,Integer.parseInt(filterRate.get(i*5+j).attr("alt").substring(10,11)));
+                    //Log.e("element",filterRate.get(i*5+j).attr("alt").substring(10,11));
+                }
+
+            }
+            //getHeroInfoAndSave(filterMostly.toString()+filterRate.toString());
+            //Log.e("getDataFromUrl2", filterRate.toString());
         }
     }
     /**
-     * 获取勇士名称
+     * 获取勇士信息并且储存
      */
-    private void getHeroInfoAndSave(Elements a){
+    private void getHeroInfoAndSave(String informationAfterFilter){
+        int sum = getStringOccurrenceNumber("title=\"★6",informationAfterFilter);
+        int HeroNameSum=0;
+        //StringBuffer HeroNamebuffer
+        for(int i=0;i<sum;i++){
+            HeroNameSum = informationAfterFilter.indexOf('a');
+            informationAfterFilter.substring(informationAfterFilter.indexOf('a'),informationAfterFilter.indexOf('a')+10);
 
+        }
+    }
+    /**
+     * 获取源字符串中目标子串出现的次数
+     */
+    private int getStringOccurrenceNumber(String findString,String data){
+        int originLength = data.length();
+        return data.replaceAll(findString,findString+"*").length() - originLength;
     }
 }
