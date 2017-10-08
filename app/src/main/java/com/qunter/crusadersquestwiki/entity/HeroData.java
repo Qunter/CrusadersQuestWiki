@@ -4,7 +4,7 @@ package com.qunter.crusadersquestwiki.entity;
  * Created by Administrator on 2017/9/25.
  */
 
-public class HeroDate {
+public class HeroData {
     private String HeroName;
     private int HeroLevel;
     //暂无法高效获取
