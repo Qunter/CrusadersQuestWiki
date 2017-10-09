@@ -25,7 +25,7 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
             <ImageView
-                android:id="@+id/item_iv"
+                android:id="@+id/hero_img"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginTop="5dp"
@@ -33,11 +33,11 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="20dp"/>
             <TextView
-                android:text="勇士名"
-                android:id="@+id/item_tv"
+                android:id="@+id/hero_name"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:text="勇士名"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="0dp"
@@ -46,27 +46,27 @@
             android:gravity="center"
             android:orientation="horizontal">
             <ImageView
-                android:background="@drawable/ic_rank_star_5"
+                android:id="@+id/hero_rank_1"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_margin="5dp"/>
             <ImageView
-                android:background="@drawable/ic_rank_star_5"
+                android:id="@+id/hero_rank_2"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_margin="5dp"/>
             <ImageView
-                android:background="@drawable/ic_rank_star_5"
+                android:id="@+id/hero_rank_3"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_margin="5dp"/>
             <ImageView
-                android:background="@drawable/ic_rank_star_5"
+                android:id="@+id/hero_rank_4"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_margin="5dp"/>
             <ImageView
-                android:background="@drawable/ic_rank_star_5"
+                android:id="@+id/hero_rank_5"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_margin="5dp"/>

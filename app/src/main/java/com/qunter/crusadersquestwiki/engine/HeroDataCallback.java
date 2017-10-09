@@ -9,5 +9,5 @@ import java.util.List;
  */
 
 public interface HeroDataCallback {
-    public void getHeroData(List<HeroData> datas);
+    public void afterGetHeroData(List<HeroData> datas);
 }

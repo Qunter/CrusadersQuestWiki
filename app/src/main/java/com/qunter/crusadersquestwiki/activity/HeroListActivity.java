@@ -1,5 +1,6 @@
 package com.qunter.crusadersquestwiki.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -62,7 +63,9 @@ public class HeroListActivity extends BaseActivity implements View.OnClickListen
         adapter.setOnItemClickListener(new HeroListActRecAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                startActivity(HeroInfoActivity.class);
+                Intent intent = new Intent(getApplicationContext(),HeroInfoActivity.class);
+                intent.putExtra("heroType",getString(itemContentDatas[position]));
+                startActivity(intent);
             }
         });
         recyclerView.setAdapter(adapter);
