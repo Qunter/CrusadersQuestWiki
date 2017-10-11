@@ -41,7 +41,7 @@ public class HeroInfoActRecAdapter extends RecyclerView.Adapter<HeroInfoActRecAd
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.setIsRecyclable(false);
         Glide.with(context).load(datas.get(position).getHeroPicUrl()).into(holder.hero_img);
-        Log.e("url", datas.get(position).getHeroPicUrl());
+        //Log.e("url", datas.get(position).getHeroPicUrl());
         holder.hero_name.setText(datas.get(position).getHeroName());
         holder.hero_rank_1.setImageResource(getRankImageResource(datas.get(position).getHeroRate()[0]));
         holder.hero_rank_2.setImageResource(getRankImageResource(datas.get(position).getHeroRate()[1]));

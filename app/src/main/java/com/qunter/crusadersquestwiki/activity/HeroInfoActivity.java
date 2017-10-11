@@ -6,6 +6,7 @@ import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 
 import com.qunter.crusadersquestwiki.R;
 import com.qunter.crusadersquestwiki.adapter.HeroInfoActRecAdapter;
@@ -35,6 +36,12 @@ public class HeroInfoActivity extends BaseActivity implements HeroDataCallback{
             switch (msg.what){
                 case PUSHDATAINTORECYCLERVIEW:
                     adapter = new HeroInfoActRecAdapter(getApplicationContext(),datas);
+                    adapter.setOnItemClickListener(new HeroInfoActRecAdapter.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(View view, int position) {
+                            startActivity(HeroDetailActivity.class);
+                        }
+                    });
                     recyclerView.setAdapter(adapter);
                     break;
             }
