@@ -1,5 +1,7 @@
 package com.qunter.crusadersquestwiki.activity;
 
+import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -7,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.qunter.crusadersquestwiki.R;
 import com.qunter.crusadersquestwiki.adapter.HeroInfoActRecAdapter;
@@ -24,6 +27,7 @@ import java.util.List;
 
 public class HeroInfoActivity extends BaseActivity implements HeroDataCallback{
     private RecyclerView recyclerView;
+    private ImageView heroInfoBackBtn;
     private HeroDataGetterHellper heroDataGetterHellper = new HeroDataGetterHellper();
     private HeroInfoActRecAdapter adapter;
     private List<HeroData> datas = new ArrayList<HeroData>();
@@ -39,7 +43,11 @@ public class HeroInfoActivity extends BaseActivity implements HeroDataCallback{
                     adapter.setOnItemClickListener(new HeroInfoActRecAdapter.OnItemClickListener() {
                         @Override
                         public void onItemClick(View view, int position) {
-                            startActivity(HeroDetailActivity.class);
+                            Intent intent = new Intent(getApplicationContext(),HeroDetailActivity.class);
+                            intent.putExtra("url",datas.get(position).getHeroDetailUrl());
+                            intent.putExtra("heroName",datas.get(position).getHeroName());
+                            startActivity(intent);
+                            //startActivity(HeroDetailActivity.class);
                         }
                     });
                     recyclerView.setAdapter(adapter);
@@ -60,6 +68,13 @@ public class HeroInfoActivity extends BaseActivity implements HeroDataCallback{
         setContentView(R.layout.activity_heroinfo);
         recyclerView = (RecyclerView) findViewById(R.id.heroinfo_rec);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        heroInfoBackBtn = (ImageView) findViewById(R.id.herolist_backBtn);
+        heroInfoBackBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     /**

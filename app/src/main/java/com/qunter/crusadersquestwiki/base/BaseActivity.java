@@ -25,6 +25,7 @@ public abstract class BaseActivity extends Activity {
         if(IfTranslucent){
             initTranslucent();
         }
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
     //初始化变量
     protected abstract void initVariablesAndService();
@@ -65,4 +66,9 @@ public abstract class BaseActivity extends Activity {
         startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
     }
 
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+    }
 }
