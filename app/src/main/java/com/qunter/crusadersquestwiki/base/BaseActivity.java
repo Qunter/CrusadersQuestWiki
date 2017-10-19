@@ -25,6 +25,7 @@ public abstract class BaseActivity extends Activity {
         if(IfTranslucent){
             initTranslucent();
         }
+        //设置要跳转到的页面以及跳转时的动画
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
     //初始化变量
