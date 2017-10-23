@@ -3,6 +3,7 @@ package com.qunter.crusadersquestwiki.activity;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebResourceRequest;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
@@ -46,5 +47,9 @@ public class HeroDetailActivity extends BaseActivity {
                 return true;
             }
         });
+        //设置 缓存模式
+        webView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
+        // 开启 DOM storage API 功能
+        webView.getSettings().setDomStorageEnabled(true);
     }
 }
