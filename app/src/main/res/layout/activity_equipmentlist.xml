@@ -27,7 +27,6 @@
                 android:text="@string/equipment_list_title"
                 android:textSize="22sp"
                 android:textColor="@color/titleColor" />
-
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
     <android.support.v7.widget.RecyclerView
