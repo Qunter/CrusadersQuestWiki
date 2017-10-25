@@ -2,32 +2,25 @@ package com.qunter.crusadersquestwiki.engine;
 
 import android.util.Log;
 
-import com.qunter.crusadersquestwiki.entity.HeroData;
-
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
- * Created by Administrator on 2017/10/8.
+ * Created by Administrator on 2017/10/25.
  */
 
-public class HeroDataGetterHellper implements DataGetter{
-    private List<HeroData> datas = new ArrayList<HeroData>();
+public class EquipmentDataGetterHellper implements DataGetter {
     /**
-     * 使用jsoup获取首页数据
-     * http://wiki.joyme.com/cq/%E5%89%91%E5%A3%AB
-     * http://wiki.joyme.com/cq/%E5%85%89%E6%98%8E%E5%89%91%E5%A3%AB%E9%87%8C%E6%98%82
-     * http://wiki.joyme.com/cq/剑士
+     * 使用jsoup获取数据
+     * http://wiki.joyme.com/cq/%E5%89%91%E5%A3%AB%E7%B2%BE%E6%B7%AC%E6%AD%A6%E5%99%A8%E5%88%97%E8%A1%A8
+     * http://wiki.joyme.com/cq/剑士精淬武器列表
      */
     private void getDataFromUrlAndSave(String heroType){
-        String url = "http://wiki.joyme.com/cq/"+heroType;
+        String url = "http://wiki.joyme.com/cq/"+heroType+"精淬武器列表";
         Connection conn = Jsoup.connect(url);
         // 修改http包中的header,伪装成浏览器进行抓取
         conn.header("User-Agent", "Mozilla/5.0 (X11; Linux x86_64; rv:32.0) Gecko/    20100101 Firefox/32.0");
@@ -40,15 +33,8 @@ public class HeroDataGetterHellper implements DataGetter{
         if(doc==null){
             Log.e("getDataFromUrl", "null");
         }else{
-            Elements filterBase = doc.select("div[id=mw-content-text]");
-            //获取到勇士名称及头像url及详情Url
-            Elements filterMostly = filterBase.select("a[title~=^★6]");
-            //获取到勇士头像url
-            Elements filterPicUrl = filterMostly.select("img[data-file-height=72]");
-            //获取到勇士评级
-            Elements filterRate = filterBase.select("img[data-file-height=30]");
-            /*
-            String xml = filterBase.toString();
+
+            String xml = doc.toString();
 
             if(xml.length() > 4000) {
                 for(int i=0;i<xml.length();i+=4000){
@@ -59,8 +45,9 @@ public class HeroDataGetterHellper implements DataGetter{
                 }
             } else
                 Log.i("getDataFromUrl",xml);
-            */
-            Log.e("hehe", filterPicUrl.toString() );
+
+            //Log.e("hehe", filterPicUrl.toString() );
+            /*
             HeroData data;
             for(Element element:filterMostly){
                 data = new HeroData();
@@ -81,6 +68,7 @@ public class HeroDataGetterHellper implements DataGetter{
                 }
 
             }
+            */
             //getHeroInfoAndSave(filterMostly.toString()+filterRate.toString());
             //Log.e("getDataFromUrl2", filterRate.toString());
         }
@@ -89,6 +77,5 @@ public class HeroDataGetterHellper implements DataGetter{
     @Override
     public void getDataAndSendCallback(String heroType, DataCallback callback) {
         getDataFromUrlAndSave(heroType);
-        callback.afterGetData(datas);
     }
 }

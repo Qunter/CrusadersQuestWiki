@@ -2,11 +2,8 @@ package com.qunter.crusadersquestwiki.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -16,13 +13,6 @@ import com.qunter.crusadersquestwiki.base.BaseActivity;
 import com.qunter.crusadersquestwiki.entity.HeroData;
 import com.qunter.crusadersquestwiki.entity.HeroListActRecItemData;
 
-import org.jsoup.Connection;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 

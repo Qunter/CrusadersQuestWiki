@@ -5,5 +5,5 @@ package com.qunter.crusadersquestwiki.engine;
  */
 
 public interface DataGetter {
-    public void getData(String heroType,HeroDataCallback callback);
+    public void getDataAndSendCallback(String heroType, DataCallback callback);
 }

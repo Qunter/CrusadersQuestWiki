@@ -1,7 +1,6 @@
 package com.qunter.crusadersquestwiki.activity;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -14,7 +13,7 @@ import android.widget.ImageView;
 import com.qunter.crusadersquestwiki.R;
 import com.qunter.crusadersquestwiki.adapter.HeroInfoActRecAdapter;
 import com.qunter.crusadersquestwiki.base.BaseActivity;
-import com.qunter.crusadersquestwiki.engine.HeroDataCallback;
+import com.qunter.crusadersquestwiki.engine.DataCallback;
 import com.qunter.crusadersquestwiki.engine.HeroDataGetterHellper;
 import com.qunter.crusadersquestwiki.entity.HeroData;
 
@@ -25,7 +24,7 @@ import java.util.List;
  * Created by Administrator on 2017/10/8.
  */
 
-public class HeroInfoActivity extends BaseActivity implements HeroDataCallback{
+public class HeroInfoActivity extends BaseActivity implements DataCallback<HeroData> {
     private RecyclerView recyclerView;
     private ImageView heroInfoBackBtn;
     private HeroDataGetterHellper heroDataGetterHellper = new HeroDataGetterHellper();
@@ -84,7 +83,7 @@ public class HeroInfoActivity extends BaseActivity implements HeroDataCallback{
         new Thread(new Runnable() {
             @Override
             public void run() {
-                heroDataGetterHellper.getData(heroType,HeroInfoActivity.this);
+                heroDataGetterHellper.getDataAndSendCallback(heroType,HeroInfoActivity.this);
             }
         }).start();
     }
@@ -94,9 +93,9 @@ public class HeroInfoActivity extends BaseActivity implements HeroDataCallback{
      * 获取勇士数据后应该进行的操作
      */
     @Override
-    public void afterGetHeroData(List<HeroData> datas) {
+    public void afterGetData(List<HeroData> datas) {
         this.datas = datas;
         handler.sendEmptyMessage(PUSHDATAINTORECYCLERVIEW);
-        Log.e("afterGetHeroData", datas.size()+"" );
+        Log.e("afterGetData", datas.size()+"" );
     }
 }
