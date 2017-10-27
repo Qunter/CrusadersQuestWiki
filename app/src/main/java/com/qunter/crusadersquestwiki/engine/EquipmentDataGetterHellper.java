@@ -2,18 +2,24 @@ package com.qunter.crusadersquestwiki.engine;
 
 import android.util.Log;
 
+import com.qunter.crusadersquestwiki.entity.EquipmentData;
+
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/10/25.
  */
 
 public class EquipmentDataGetterHellper implements DataGetter {
+    private List<EquipmentData> datas = new ArrayList<EquipmentData>();
     /**
      * 使用jsoup获取数据
      * http://wiki.joyme.com/cq/%E5%89%91%E5%A3%AB%E7%B2%BE%E6%B7%AC%E6%AD%A6%E5%99%A8%E5%88%97%E8%A1%A8
@@ -33,18 +39,21 @@ public class EquipmentDataGetterHellper implements DataGetter {
         if(doc==null){
             Log.e("getDataFromUrl", "null");
         }else{
-
-            String xml = doc.toString();
-
+            Elements filterBase = doc.select("div[id=mw-content-text]");
+            Elements filterthen = filterBase.select("table");
+            Elements filterfinal = filterthen.get(1).select("tr");
+            String xml = filterthen.toString();
+            Log.e("getDataFromUrl", "do");
             if(xml.length() > 4000) {
                 for(int i=0;i<xml.length();i+=4000){
                     if(i+4000<xml.length())
-                        Log.i("getDataFromUrl"+i,xml.substring(i, i+4000));
+                        Log.e("getDataFromUrl"+i,xml.substring(i, i+4000));
                     else
-                        Log.i("getDataFromUrl"+i,xml.substring(i, xml.length()));
+                        Log.e("getDataFromUrl"+i,xml.substring(i, xml.length()));
                 }
             } else
-                Log.i("getDataFromUrl",xml);
+                Log.e("getDataFromUrl",xml);
+
 
             //Log.e("hehe", filterPicUrl.toString() );
             /*

@@ -9,6 +9,7 @@ import com.qunter.crusadersquestwiki.R;
 import com.qunter.crusadersquestwiki.base.BaseActivity;
 import com.qunter.crusadersquestwiki.engine.DataCallback;
 import com.qunter.crusadersquestwiki.engine.EquipmentDataGetterHellper;
+import com.qunter.crusadersquestwiki.entity.EquipmentData;
 import com.qunter.crusadersquestwiki.entity.HeroData;
 
 import java.util.List;
@@ -17,7 +18,7 @@ import java.util.List;
  * Created by Administrator on 2017/9/23.
  */
 
-public class EquipmentListActivity extends BaseActivity implements DataCallback<HeroData> {
+public class EquipmentListActivity extends BaseActivity implements DataCallback<EquipmentData> {
     private ImageView backBtn;
     private RecyclerView recyclerView;
     private EquipmentDataGetterHellper equipmentDataGetterHellper = new EquipmentDataGetterHellper();
@@ -53,7 +54,7 @@ public class EquipmentListActivity extends BaseActivity implements DataCallback<
     }
 
     @Override
-    public void afterGetData(List<HeroData> datas) {
+    public void afterGetData(List<EquipmentData> datas) {
 
     }
 }
