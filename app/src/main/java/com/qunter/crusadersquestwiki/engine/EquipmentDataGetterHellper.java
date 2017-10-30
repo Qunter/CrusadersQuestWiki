@@ -42,7 +42,8 @@ public class EquipmentDataGetterHellper implements DataGetter {
             Elements filterBase = doc.select("div[id=mw-content-text]");
             Elements filterthen = filterBase.select("table");
             Elements filterfinal = filterthen.get(1).select("tr");
-            String xml = filterthen.toString();
+            Elements filterfinalal = filterfinal.select("td");
+            String xml = filterfinalal.toString();
             Log.e("getDataFromUrl", "do");
             if(xml.length() > 4000) {
                 for(int i=0;i<xml.length();i+=4000){
@@ -56,28 +57,20 @@ public class EquipmentDataGetterHellper implements DataGetter {
 
 
             //Log.e("hehe", filterPicUrl.toString() );
-            /*
-            HeroData data;
-            for(Element element:filterMostly){
-                data = new HeroData();
-                data.setHeroDetailUrl(element.absUrl("href"));
-                data.setHeroName(element.attr("title").substring(3));
-                //Log.e("element",element.attr("title").substring(3));
-                data.setHeroPicUrl(element.attr("src"));
 
-                //Log.e("url", "do");
+            EquipmentData data;
+            for(int i=0;i<filterfinalal.size()/7;i++){
+                data = new EquipmentData();
+                data.setEquipmentPicUrl(filterfinalal.get(i*7).attr("src"));
+                data.setEquipmentName(filterfinalal.get(i*7+1).attr("a"));
+                //data.setEquipmentName(filterfinalal.get(i*7+2).attr("alt"));
+                data.setEquipmentRate(Integer.parseInt(filterfinalal.get(i*7+3).text()));
+                data.setEquipmentAttack(Integer.parseInt(filterfinalal.get(i*7+4).text()));
+                data.setEquipmentASPD(Float.parseFloat(filterfinalal.get(i*7+5).text()));
+                data.setEquipmentForWho(filterfinalal.get(i*7+1).absUrl("href"));
                 datas.add(data);
             }
-            for(int i=0;i<filterRate.size()/5;i++){
-                datas.get(i).setHeroPicUrl(filterPicUrl.get(i).attr("src"));
-                Log.e("url", filterPicUrl.get(i).attr("src"));
-                for(int j=0;j<5;j++){
-                    datas.get(i).setHeroRate(j,Integer.parseInt(filterRate.get(i*5+j).attr("alt").substring(10,11)));
-                    //Log.e("element",filterRate.get(i*5+j).attr("alt").substring(10,11));
-                }
 
-            }
-            */
             //getHeroInfoAndSave(filterMostly.toString()+filterRate.toString());
             //Log.e("getDataFromUrl2", filterRate.toString());
         }
@@ -86,5 +79,6 @@ public class EquipmentDataGetterHellper implements DataGetter {
     @Override
     public void getDataAndSendCallback(String heroType, DataCallback callback) {
         getDataFromUrlAndSave(heroType);
+        callback.afterGetData(datas);
     }
 }

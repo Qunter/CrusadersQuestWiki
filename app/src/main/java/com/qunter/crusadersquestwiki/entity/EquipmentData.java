@@ -9,8 +9,9 @@ public class EquipmentData {
     private String EquipmentName;
     private int EquipmentRate;
     private int EquipmentAttack;
-    private int EquipmentASPD;
+    private float EquipmentASPD;
     private String EquipmentForWho;
+    private String EquipmentDetailUrl;
 
     public String getEquipmentPicUrl() {
         return EquipmentPicUrl;
@@ -44,11 +45,11 @@ public class EquipmentData {
         EquipmentAttack = equipmentAttack;
     }
 
-    public int getEquipmentASPD() {
+    public float getEquipmentASPD() {
         return EquipmentASPD;
     }
 
-    public void setEquipmentASPD(int equipmentASPD) {
+    public void setEquipmentASPD(float equipmentASPD) {
         EquipmentASPD = equipmentASPD;
     }
 
@@ -58,5 +59,13 @@ public class EquipmentData {
 
     public void setEquipmentForWho(String equipmentForWho) {
         EquipmentForWho = equipmentForWho;
+    }
+
+    public String getEquipmentDetailUrl() {
+        return EquipmentDetailUrl;
+    }
+
+    public void setEquipmentDetailUrl(String equipmentDetailUrl) {
+        EquipmentDetailUrl = equipmentDetailUrl;
     }
 }
