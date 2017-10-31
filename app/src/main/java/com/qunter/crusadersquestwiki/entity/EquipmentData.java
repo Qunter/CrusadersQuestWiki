@@ -7,9 +7,9 @@ package com.qunter.crusadersquestwiki.entity;
 public class EquipmentData {
     private String EquipmentPicUrl;
     private String EquipmentName;
-    private int EquipmentRate;
-    private int EquipmentAttack;
-    private float EquipmentASPD;
+    private String EquipmentRate;
+    private String EquipmentAttack;
+    private String EquipmentASPD;
     private String EquipmentForWho;
     private String EquipmentDetailUrl;
 
@@ -29,27 +29,27 @@ public class EquipmentData {
         EquipmentName = equipmentName;
     }
 
-    public int getEquipmentRate() {
+    public String getEquipmentRate() {
         return EquipmentRate;
     }
 
-    public void setEquipmentRate(int equipmentRate) {
+    public void setEquipmentRate(String equipmentRate) {
         EquipmentRate = equipmentRate;
     }
 
-    public int getEquipmentAttack() {
+    public String getEquipmentAttack() {
         return EquipmentAttack;
     }
 
-    public void setEquipmentAttack(int equipmentAttack) {
+    public void setEquipmentAttack(String equipmentAttack) {
         EquipmentAttack = equipmentAttack;
     }
 
-    public float getEquipmentASPD() {
+    public String getEquipmentASPD() {
         return EquipmentASPD;
     }
 
-    public void setEquipmentASPD(float equipmentASPD) {
+    public void setEquipmentASPD(String equipmentASPD) {
         EquipmentASPD = equipmentASPD;
     }
 

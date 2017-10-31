@@ -60,11 +60,12 @@ public class HeroDataGetterHellper implements DataGetter{
             } else
                 Log.i("getDataFromUrl",xml);
             */
-            Log.e("hehe", filterPicUrl.toString() );
+            //Log.e("hehe", filterPicUrl.toString() );
             HeroData data;
             for(Element element:filterMostly){
                 data = new HeroData();
                 data.setHeroDetailUrl(element.absUrl("href"));
+                Log.e("hehe", element.toString() );
                 data.setHeroName(element.attr("title").substring(3));
                 //Log.e("element",element.attr("title").substring(3));
                 data.setHeroPicUrl(element.attr("src"));
@@ -74,7 +75,7 @@ public class HeroDataGetterHellper implements DataGetter{
             }
             for(int i=0;i<filterRate.size()/5;i++){
                 datas.get(i).setHeroPicUrl(filterPicUrl.get(i).attr("src"));
-                Log.e("url", filterPicUrl.get(i).attr("src"));
+                //Log.e("url", filterPicUrl.get(i).attr("src"));
                 for(int j=0;j<5;j++){
                     datas.get(i).setHeroRate(j,Integer.parseInt(filterRate.get(i*5+j).attr("alt").substring(10,11)));
                     //Log.e("element",filterRate.get(i*5+j).attr("alt").substring(10,11));

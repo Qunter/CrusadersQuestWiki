@@ -61,13 +61,15 @@ public class EquipmentDataGetterHellper implements DataGetter {
             EquipmentData data;
             for(int i=0;i<filterfinalal.size()/7;i++){
                 data = new EquipmentData();
-                data.setEquipmentPicUrl(filterfinalal.get(i*7).attr("src"));
-                data.setEquipmentName(filterfinalal.get(i*7+1).attr("a"));
+                data.setEquipmentPicUrl(filterfinalal.get(i*7).select("img").attr("src"));
+                data.setEquipmentName(filterfinalal.get(i*7+1).text());
                 //data.setEquipmentName(filterfinalal.get(i*7+2).attr("alt"));
-                data.setEquipmentRate(Integer.parseInt(filterfinalal.get(i*7+3).text()));
-                data.setEquipmentAttack(Integer.parseInt(filterfinalal.get(i*7+4).text()));
-                data.setEquipmentASPD(Float.parseFloat(filterfinalal.get(i*7+5).text()));
-                data.setEquipmentForWho(filterfinalal.get(i*7+1).absUrl("href"));
+                data.setEquipmentRate(filterfinalal.get(i*7+3).text());
+                data.setEquipmentAttack(filterfinalal.get(i*7+4).text());
+                data.setEquipmentASPD(filterfinalal.get(i*7+5).text());
+                data.setEquipmentForWho(filterfinalal.get(i*7+6).text());
+                data.setEquipmentDetailUrl(filterfinalal.get(i*7+1).select("a").get(0).absUrl("href"));
+                Log.e("setEquipmentForWho", filterfinalal.get(i*7+1).absUrl("href")+"");
                 datas.add(data);
             }
 
