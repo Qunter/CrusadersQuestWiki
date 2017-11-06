@@ -31,6 +31,7 @@ public class EquipmentListActivity extends BaseActivity implements DataCallback<
     private List<EquipmentData> datas = new ArrayList<EquipmentData>();
     private EquipmentDataGetterHellper equipmentDataGetterHellper = new EquipmentDataGetterHellper();
     private EquipmentListRecAdapter adapter;
+    private String heroType = "null";
     private final int PUSHDATAINTORECYCLERVIEW = 0x00;
     private Handler handler = new Handler(){
         @Override
@@ -56,6 +57,7 @@ public class EquipmentListActivity extends BaseActivity implements DataCallback<
     };
     @Override
     protected void initVariablesAndService() {
+        heroType = getIntent().getExtras().getString("heroType");
         getHeroData();
     }
 
@@ -80,7 +82,7 @@ public class EquipmentListActivity extends BaseActivity implements DataCallback<
         new Thread(new Runnable() {
             @Override
             public void run() {
-                equipmentDataGetterHellper.getDataAndSendCallback("剑士",EquipmentListActivity.this);
+                equipmentDataGetterHellper.getDataAndSendCallback(heroType,EquipmentListActivity.this);
             }
         }).start();
     }

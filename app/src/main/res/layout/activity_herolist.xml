@@ -11,30 +11,30 @@
         android:layout_height="wrap_content"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
         <android.support.v7.widget.Toolbar
-            android:id="@+id/herolist_toolbar"
+            android:id="@+id/heroType_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             app:theme="@style/Theme.AppCompat.Light"
             android:background="@color/main_actionbar">
             <ImageView
-                android:id="@+id/herolist_backBtn"
+                android:id="@+id/heroType_backBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:src="@drawable/ic_back_black_36dp"/>
             <TextView
+                android:id="@+id/heroType_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/hero_list_title"
                 android:textSize="22sp"
                 android:textColor="@color/titleColor" />
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/herolist_rec"
+        android:id="@+id/heroType_rec"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

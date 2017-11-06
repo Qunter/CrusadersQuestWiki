@@ -15,7 +15,7 @@
             app:theme="@style/Theme.AppCompat.Light"
             android:background="@color/main_actionbar">
             <ImageView
-                android:id="@+id/herolist_backBtn"
+                android:id="@+id/heroType_backBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"

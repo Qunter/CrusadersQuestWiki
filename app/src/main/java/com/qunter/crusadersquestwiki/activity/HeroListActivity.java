@@ -2,73 +2,100 @@ package com.qunter.crusadersquestwiki.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.qunter.crusadersquestwiki.R;
-import com.qunter.crusadersquestwiki.adapter.HeroListActRecAdapter;
+import com.qunter.crusadersquestwiki.adapter.HeroInfoActRecAdapter;
 import com.qunter.crusadersquestwiki.base.BaseActivity;
+import com.qunter.crusadersquestwiki.engine.DataCallback;
+import com.qunter.crusadersquestwiki.engine.HeroDataGetterHellper;
 import com.qunter.crusadersquestwiki.entity.HeroData;
-import com.qunter.crusadersquestwiki.entity.HeroListActRecItemData;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Administrator on 2017/9/23.
+ * Created by Administrator on 2017/10/8.
  */
 
-public class HeroListActivity extends BaseActivity implements View.OnClickListener {
+public class HeroListActivity extends BaseActivity implements DataCallback<HeroData> {
     private RecyclerView recyclerView;
-    private ImageView BackBtn;
-    private List<HeroListActRecItemData> datas = new ArrayList<HeroListActRecItemData>();
-    private List<HeroData> dataas = new ArrayList<HeroData>();
-    private int[] itemPicDatas = {R.drawable.ic_warrior,R.drawable.ic_paladin,R.drawable.ic_archer,R.drawable.ic_hunter,R.drawable.ic_wizard,R.drawable.ic_priest};
-    private int[] itemContentDatas = {R.string.warrior,R.string.paladin,R.string.archer,R.string.hunter,R.string.wizard,R.string.priest};
-
+    private ImageView heroInfoBackBtn;
+    private HeroDataGetterHellper heroDataGetterHellper = new HeroDataGetterHellper();
+    private HeroInfoActRecAdapter adapter;
+    private List<HeroData> datas = new ArrayList<HeroData>();
+    private String heroType = "null";
+    private final int PUSHDATAINTORECYCLERVIEW = 0x00;
+    private Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what){
+                case PUSHDATAINTORECYCLERVIEW:
+                    adapter = new HeroInfoActRecAdapter(getApplicationContext(),datas);
+                    adapter.setOnItemClickListener(new HeroInfoActRecAdapter.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(View view, int position) {
+                            Intent intent = new Intent(getApplicationContext(),HeroDetailActivity.class);
+                            intent.putExtra("url",datas.get(position).getHeroDetailUrl());
+                            intent.putExtra("heroName",datas.get(position).getHeroName());
+                            startActivity(intent);
+                            //startActivity(HeroDetailActivity.class);
+                        }
+                    });
+                    recyclerView.setAdapter(adapter);
+                    break;
+            }
+        }
+    };
 
     @Override
     protected void initVariablesAndService() {
-        for(int i=0;i<itemPicDatas.length;i++){
-            HeroListActRecItemData data = new HeroListActRecItemData();
-            data.setIv_imgResource(itemPicDatas[i]);
-            data.setTv_content(getString(itemContentDatas[i]));
-            datas.add(data);
-        }
-
+        heroType = getIntent().getExtras().getString("heroType");
+        //Log.e("heroType", heroType+"");
+        getHeroData();
     }
 
     @Override
     protected void initViews(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_herolist);
-
-        BackBtn = (ImageView) findViewById(R.id.herolist_backBtn);
-        BackBtn.setOnClickListener(this);
-
-        recyclerView = (RecyclerView) findViewById(R.id.herolist_rec);
+        setContentView(R.layout.activity_heroinfo);
+        recyclerView = (RecyclerView) findViewById(R.id.heroinfo_rec);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        HeroListActRecAdapter adapter = new HeroListActRecAdapter(datas);
-        adapter.setOnItemClickListener(new HeroListActRecAdapter.OnItemClickListener() {
+        heroInfoBackBtn = (ImageView) findViewById(R.id.heroType_backBtn);
+        heroInfoBackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(View view, int position) {
-                Intent intent = new Intent(getApplicationContext(),HeroInfoActivity.class);
-                intent.putExtra("heroType",getString(itemContentDatas[position]));
-                startActivity(intent);
+            public void onClick(View v) {
+                finish();
             }
         });
-        recyclerView.setAdapter(adapter);
     }
 
+    /**
+     * jsoup爬取勇士数据
+     */
+    private void getHeroData(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                heroDataGetterHellper.getDataAndSendCallback(heroType,HeroListActivity.this);
+            }
+        }).start();
+    }
+
+    /**
+     * 重写接口中定义的方法
+     * 获取勇士数据后应该进行的操作
+     */
     @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.herolist_backBtn:
-                finish();
-                break;
-        }
+    public void afterGetData(List<HeroData> datas) {
+        this.datas = datas;
+        handler.sendEmptyMessage(PUSHDATAINTORECYCLERVIEW);
+        Log.e("afterGetData", datas.size()+"" );
     }
-
-
 }

@@ -51,10 +51,10 @@ public class MainActivity extends BaseActivity {
     private void enterActivity(int position){
         switch (position){
             case 0:
-                startActivity(HeroListActivity.class);
+                startActivityWithTwoExtra("listType",position,"listTitle",getString(itemContentDatas[position]),HeroTypeListActivity.class);
                 break;
             case 1:
-                startActivity(EquipmentListActivity.class);
+                startActivityWithTwoExtra("listType",position,"listTitle",getString(itemContentDatas[position]),HeroTypeListActivity.class);
                 break;
             case 2:
                 startActivity(SkillListActivity.class);
