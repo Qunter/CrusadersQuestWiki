@@ -19,6 +19,7 @@ import com.qunter.crusadersquestwiki.entity.EquipmentData;
 import com.qunter.crusadersquestwiki.entity.HeroData;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -43,11 +44,9 @@ public class EquipmentListActivity extends BaseActivity implements DataCallback<
                     adapter.setOnItemClickListener(new EquipmentListRecAdapter.OnItemClickListener() {
                         @Override
                         public void onItemClick(View view, int position) {
-                            //Intent intent = new Intent(getApplicationContext(),WebDetailActivity.class);
-                            //intent.putExtra("url",datas.get(position).getEquipmentDetailUrl());
-                            //intent.putExtra("equipmentName",datas.get(position).getEquipmentName());
-                            //startActivity(intent);
-                            //startActivity(WebDetailActivity.class);
+                            startActivity(new Intent(getApplicationContext(),WebDetailActivity.class)
+                                    .putExtra("url",datas.get(position).getEquipmentDetailUrl())
+                                    .putExtra("equipmentName",datas.get(position).getEquipmentName()));
                         }
                     });
                     recyclerView.setAdapter(adapter);

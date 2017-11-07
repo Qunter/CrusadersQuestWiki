@@ -1,5 +1,6 @@
 package com.qunter.crusadersquestwiki.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -51,13 +52,17 @@ public class MainActivity extends BaseActivity {
     private void enterActivity(int position){
         switch (position){
             case 0:
-                startActivityWithTwoExtra("listType",position,"listTitle",getString(itemContentDatas[position]),HeroTypeListActivity.class);
+                startActivity(new Intent(getApplicationContext(),HeroTypeListActivity.class)
+                        .putExtra("listType",position)
+                        .putExtra("listTitle",getString(itemContentDatas[position])));
                 break;
             case 1:
-                startActivityWithTwoExtra("listType",position,"listTitle",getString(itemContentDatas[position]),HeroTypeListActivity.class);
+                startActivity(new Intent(getApplicationContext(),HeroTypeListActivity.class)
+                        .putExtra("listType",position)
+                        .putExtra("listTitle",getString(itemContentDatas[position])));
                 break;
             case 2:
-                startActivity(SkillListActivity.class);
+                startActivity(new Intent(getApplicationContext(),SkillListActivity.class));
                 break;
         }
     }

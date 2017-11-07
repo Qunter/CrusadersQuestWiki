@@ -1,5 +1,6 @@
 package com.qunter.crusadersquestwiki.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -63,10 +64,12 @@ public class HeroTypeListActivity extends BaseActivity implements View.OnClickLi
             public void onItemClick(View view, int position) {
                 switch (from){
                     case HERO:
-                        startActivity("heroType",getString(itemContentDatas[position]),HeroListActivity.class);
+                        startActivity(new Intent(getApplicationContext(),HeroListActivity.class)
+                                .putExtra("heroType",getString(itemContentDatas[position])));
                         break;
                     case EQUIPMENT:
-                        startActivity("heroType",getString(itemContentDatas[position]),EquipmentListActivity.class);
+                        startActivity(new Intent(getApplicationContext(),EquipmentListActivity.class)
+                                .putExtra("heroType",getString(itemContentDatas[position])));
                         break;
                 }
             }

@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import java.util.HashMap;
+
 /**
  * Created by Administrator on 2017/9/15.
  */
@@ -56,41 +58,16 @@ public abstract class BaseActivity extends Activity {
             window.setStatusBarColor(Color.TRANSPARENT);//calculateStatusColor(Color.WHITE, (int) alphaValue)
         }
     }
-
     /**
-     * 跳转到新页面
+     * 重写方法以添加跳转动画
      */
-    protected void startActivity(Class classes){
-        Intent intent = new Intent();
-        intent.setClass(getApplicationContext(), classes);
+    @Override
+    public void startActivity(Intent intent) {
+        super.startActivity(intent);
         //设置要跳转到的页面以及跳转时的动画
         startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
     }
 
-    protected void startActivity(String key,String value,Class classes){
-        Intent intent = new Intent();
-        intent.setClass(getApplicationContext(), classes);
-        intent.putExtra(key,value);
-        //设置要跳转到的页面以及跳转时的动画
-        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
-    }
-
-    protected void startActivity(String key,int value,Class classes){
-        Intent intent = new Intent();
-        intent.setClass(getApplicationContext(), classes);
-        intent.putExtra(key,value);
-        //设置要跳转到的页面以及跳转时的动画
-        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
-    }
-
-    protected void startActivityWithTwoExtra(String key1,int value1,String key2,String value2,Class classes){
-        Intent intent = new Intent();
-        intent.setClass(getApplicationContext(), classes);
-        intent.putExtra(key1,value1);
-        intent.putExtra(key2,value2);
-        //设置要跳转到的页面以及跳转时的动画
-        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
-    }
 
     @Override
     public void finish() {
