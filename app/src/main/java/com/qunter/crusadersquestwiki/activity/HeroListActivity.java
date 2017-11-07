@@ -42,11 +42,11 @@ public class HeroListActivity extends BaseActivity implements DataCallback<HeroD
                     adapter.setOnItemClickListener(new HeroInfoActRecAdapter.OnItemClickListener() {
                         @Override
                         public void onItemClick(View view, int position) {
-                            Intent intent = new Intent(getApplicationContext(),HeroDetailActivity.class);
+                            Intent intent = new Intent(getApplicationContext(),WebDetailActivity.class);
                             intent.putExtra("url",datas.get(position).getHeroDetailUrl());
-                            intent.putExtra("heroName",datas.get(position).getHeroName());
+                            intent.putExtra("title",datas.get(position).getHeroName());
                             startActivity(intent);
-                            //startActivity(HeroDetailActivity.class);
+                            //startActivity(WebDetailActivity.class);
                         }
                     });
                     recyclerView.setAdapter(adapter);

@@ -29,7 +29,7 @@
         <activity android:name=".activity.HeroTypeListActivity"/>
         <!-- 英雄详情界面 -->
         <activity android:name=".activity.HeroListActivity"/>
-        <activity android:name=".activity.HeroDetailActivity"/>
+        <activity android:name=".activity.WebDetailActivity"/>
         <!-- 装备图鉴界面 -->
         <activity android:name=".activity.EquipmentListActivity"/>
         <!-- 技能图鉴界面 -->

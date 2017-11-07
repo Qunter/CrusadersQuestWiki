@@ -15,13 +15,13 @@
             app:theme="@style/Theme.AppCompat.Light"
             android:background="@color/main_actionbar">
             <ImageView
-                android:id="@+id/herodetail_backBtn"
+                android:id="@+id/webdetail_backBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:src="@drawable/ic_back_black_36dp"/>
             <TextView
-                android:id="@+id/herodetail_tv"
+                android:id="@+id/webdetail_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -31,7 +31,7 @@
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
     <WebView
-        android:id="@+id/herodetail_webview"
+        android:id="@+id/webdetail_webview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingLeft="5dp"

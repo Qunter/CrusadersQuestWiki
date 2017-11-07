@@ -15,30 +15,30 @@ import com.qunter.crusadersquestwiki.base.BaseActivity;
 /**
  * Created by Administrator on 2017/10/11.
  */
-public class HeroDetailActivity extends BaseActivity {
-    private TextView heroNameTv;
-    private ImageView heroDetailBackBtn;
+public class WebDetailActivity extends BaseActivity {
+    private TextView titleTv;
+    private ImageView webDetailBackBtn;
     private WebView webView;
-    private String url,heroName;
+    private String url, title;
     @Override
     protected void initVariablesAndService() {
         url = getIntent().getStringExtra("url");
-        heroName = getIntent().getStringExtra("heroName");
+        title = getIntent().getStringExtra("title");
     }
 
     @Override
     protected void initViews(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_herodetail);
-        heroNameTv = (TextView) findViewById(R.id.herodetail_tv);
-        heroNameTv.setText(heroName);
-        heroDetailBackBtn = (ImageView) findViewById(R.id.herodetail_backBtn);
-        heroDetailBackBtn.setOnClickListener(new View.OnClickListener() {
+        setContentView(R.layout.activity_webdetail);
+        titleTv = (TextView) findViewById(R.id.webdetail_tv);
+        titleTv.setText(title);
+        webDetailBackBtn = (ImageView) findViewById(R.id.webdetail_backBtn);
+        webDetailBackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-        webView = (WebView) findViewById(R.id.herodetail_webview);
+        webView = (WebView) findViewById(R.id.webdetail_webview);
         webView.loadUrl(url);
         webView.setWebViewClient(new WebViewClient(){
             @Override

@@ -43,11 +43,11 @@ public class EquipmentListActivity extends BaseActivity implements DataCallback<
                     adapter.setOnItemClickListener(new EquipmentListRecAdapter.OnItemClickListener() {
                         @Override
                         public void onItemClick(View view, int position) {
-                            //Intent intent = new Intent(getApplicationContext(),EquipmentDetailActivity.class);
+                            //Intent intent = new Intent(getApplicationContext(),WebDetailActivity.class);
                             //intent.putExtra("url",datas.get(position).getEquipmentDetailUrl());
                             //intent.putExtra("equipmentName",datas.get(position).getEquipmentName());
                             //startActivity(intent);
-                            //startActivity(HeroDetailActivity.class);
+                            //startActivity(WebDetailActivity.class);
                         }
                     });
                     recyclerView.setAdapter(adapter);
