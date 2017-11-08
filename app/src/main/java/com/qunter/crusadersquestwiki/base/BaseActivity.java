@@ -65,7 +65,7 @@ public abstract class BaseActivity extends Activity {
     public void startActivity(Intent intent) {
         super.startActivity(intent);
         //设置要跳转到的页面以及跳转时的动画
-        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
 

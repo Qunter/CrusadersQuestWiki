@@ -16,9 +16,9 @@ import com.qunter.crusadersquestwiki.base.BaseActivity;
  * Created by Administrator on 2017/10/11.
  */
 public class WebDetailActivity extends BaseActivity {
-    private TextView titleTv;
+    private TextView webDetaiTitleTv;
     private ImageView webDetailBackBtn;
-    private WebView webView;
+    private WebView webDetaiWebView;
     private String url, title;
     @Override
     protected void initVariablesAndService() {
@@ -29,8 +29,8 @@ public class WebDetailActivity extends BaseActivity {
     @Override
     protected void initViews(Bundle savedInstanceState) {
         setContentView(R.layout.activity_webdetail);
-        titleTv = (TextView) findViewById(R.id.webdetail_tv);
-        titleTv.setText(title);
+        webDetaiTitleTv = (TextView) findViewById(R.id.webdetail_title_tv);
+        webDetaiTitleTv.setText(title);
         webDetailBackBtn = (ImageView) findViewById(R.id.webdetail_backBtn);
         webDetailBackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,9 +38,9 @@ public class WebDetailActivity extends BaseActivity {
                 finish();
             }
         });
-        webView = (WebView) findViewById(R.id.webdetail_webview);
-        webView.loadUrl(url);
-        webView.setWebViewClient(new WebViewClient(){
+        webDetaiWebView = (WebView) findViewById(R.id.webdetail_webview);
+        webDetaiWebView.loadUrl(url);
+        webDetaiWebView.setWebViewClient(new WebViewClient(){
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
                 //true代表事件已被消费
@@ -48,8 +48,8 @@ public class WebDetailActivity extends BaseActivity {
             }
         });
         //设置 缓存模式
-        webView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
+        webDetaiWebView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
         // 开启 DOM storage API 功能
-        webView.getSettings().setDomStorageEnabled(true);
+        webDetaiWebView.getSettings().setDomStorageEnabled(true);
     }
 }

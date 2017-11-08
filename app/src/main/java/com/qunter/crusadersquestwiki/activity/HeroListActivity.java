@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.qunter.crusadersquestwiki.R;
 import com.qunter.crusadersquestwiki.adapter.HeroInfoActRecAdapter;
@@ -26,7 +27,8 @@ import java.util.List;
 
 public class HeroListActivity extends BaseActivity implements DataCallback<HeroData> {
     private RecyclerView recyclerView;
-    private ImageView heroInfoBackBtn;
+    private ImageView heroListBackBtn;
+    private TextView heroListTitle;
     private HeroDataGetterHellper heroDataGetterHellper = new HeroDataGetterHellper();
     private HeroInfoActRecAdapter adapter;
     private List<HeroData> datas = new ArrayList<HeroData>();
@@ -62,11 +64,15 @@ public class HeroListActivity extends BaseActivity implements DataCallback<HeroD
 
     @Override
     protected void initViews(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_heroinfo);
-        recyclerView = (RecyclerView) findViewById(R.id.heroinfo_rec);
+        setContentView(R.layout.activity_herolist);
+        recyclerView = (RecyclerView) findViewById(R.id.heroList_rec);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        heroInfoBackBtn = (ImageView) findViewById(R.id.heroType_backBtn);
-        heroInfoBackBtn.setOnClickListener(new View.OnClickListener() {
+
+        heroListTitle = (TextView) findViewById(R.id.heroList_title_tv);
+        heroListTitle.setText(heroType+getString(R.string.hero_list_title));
+
+        heroListBackBtn = (ImageView) findViewById(R.id.heroList_backBtn);
+        heroListBackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();

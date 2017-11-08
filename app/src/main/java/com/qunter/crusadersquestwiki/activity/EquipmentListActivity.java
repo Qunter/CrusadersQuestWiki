@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.qunter.crusadersquestwiki.R;
 import com.qunter.crusadersquestwiki.adapter.EquipmentListRecAdapter;
@@ -16,10 +17,8 @@ import com.qunter.crusadersquestwiki.base.BaseActivity;
 import com.qunter.crusadersquestwiki.engine.DataCallback;
 import com.qunter.crusadersquestwiki.engine.EquipmentDataGetterHellper;
 import com.qunter.crusadersquestwiki.entity.EquipmentData;
-import com.qunter.crusadersquestwiki.entity.HeroData;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -27,7 +26,8 @@ import java.util.List;
  */
 
 public class EquipmentListActivity extends BaseActivity implements DataCallback<EquipmentData> {
-    private ImageView backBtn;
+    private ImageView equipmentListBackBtn;
+    private TextView equipmentListTitle;
     private RecyclerView recyclerView;
     private List<EquipmentData> datas = new ArrayList<EquipmentData>();
     private EquipmentDataGetterHellper equipmentDataGetterHellper = new EquipmentDataGetterHellper();
@@ -46,7 +46,7 @@ public class EquipmentListActivity extends BaseActivity implements DataCallback<
                         public void onItemClick(View view, int position) {
                             startActivity(new Intent(getApplicationContext(),WebDetailActivity.class)
                                     .putExtra("url",datas.get(position).getEquipmentDetailUrl())
-                                    .putExtra("equipmentName",datas.get(position).getEquipmentName()));
+                                    .putExtra("title",datas.get(position).getEquipmentName()));
                         }
                     });
                     recyclerView.setAdapter(adapter);
@@ -63,13 +63,17 @@ public class EquipmentListActivity extends BaseActivity implements DataCallback<
     @Override
     protected void initViews(Bundle savedInstanceState) {
         setContentView(R.layout.activity_equipmentlist);
-        backBtn = (ImageView) findViewById(R.id.equipment_list_backBtn);
-        backBtn.setOnClickListener(new View.OnClickListener() {
+        equipmentListBackBtn = (ImageView) findViewById(R.id.equipmentList_backBtn);
+        equipmentListBackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
+
+        equipmentListTitle = (TextView) findViewById(R.id.equipmentList_title_tv);
+        equipmentListTitle.setText(heroType+getString(R.string.equipment_list_title));
+
         recyclerView = (RecyclerView) findViewById(R.id.equipment_list_rec);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
     }

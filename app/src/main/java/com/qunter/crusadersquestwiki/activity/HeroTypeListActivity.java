@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.qunter.crusadersquestwiki.R;
 import com.qunter.crusadersquestwiki.adapter.HeroListActRecAdapter;
 import com.qunter.crusadersquestwiki.base.BaseActivity;
-import com.qunter.crusadersquestwiki.entity.HeroData;
 import com.qunter.crusadersquestwiki.entity.HeroListActRecItemData;
 
 import java.util.ArrayList;
@@ -23,10 +22,9 @@ import java.util.List;
 
 public class HeroTypeListActivity extends BaseActivity implements View.OnClickListener {
     private RecyclerView recyclerView;
-    private ImageView BackBtn;
-    private TextView heroTypeTitle;
+    private ImageView heroTypeListBackBtn;
+    private TextView heroTypeListTitle;
     private List<HeroListActRecItemData> datas = new ArrayList<HeroListActRecItemData>();
-    private List<HeroData> dataas = new ArrayList<HeroData>();
     private int[] itemPicDatas = {R.drawable.ic_warrior,R.drawable.ic_paladin,R.drawable.ic_archer,R.drawable.ic_hunter,R.drawable.ic_wizard,R.drawable.ic_priest};
     private int[] itemContentDatas = {R.string.warrior,R.string.paladin,R.string.archer,R.string.hunter,R.string.wizard,R.string.priest};
     private final int HERO=0,EQUIPMENT=1;
@@ -48,13 +46,13 @@ public class HeroTypeListActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     protected void initViews(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_herolist);
+        setContentView(R.layout.activity_herotypelist);
 
-        BackBtn = (ImageView) findViewById(R.id.heroType_backBtn);
-        BackBtn.setOnClickListener(this);
+        heroTypeListBackBtn = (ImageView) findViewById(R.id.heroList_backBtn);
+        heroTypeListBackBtn.setOnClickListener(this);
 
-        heroTypeTitle = (TextView) findViewById(R.id.heroType_title);
-        heroTypeTitle.setText(title);
+        heroTypeListTitle = (TextView) findViewById(R.id.heroTypeList_title_tv);
+        heroTypeListTitle.setText(title);
 
         recyclerView = (RecyclerView) findViewById(R.id.heroType_rec);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
@@ -80,7 +78,7 @@ public class HeroTypeListActivity extends BaseActivity implements View.OnClickLi
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.heroType_backBtn:
+            case R.id.heroList_backBtn:
                 finish();
                 break;
         }

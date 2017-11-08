@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends BaseActivity {
-    private RecyclerView recyclerView;
+    private RecyclerView mainRecyclerView;
     private List<MainActRecItemData> datas = new ArrayList<MainActRecItemData>();
     private int[] itemPicDatas = {R.drawable.ic_hero,R.drawable.ic_equipment,R.drawable.ic_skill};
     private int[] itemContentDatas = {R.string.hero_list_title,R.string.equipment_list_title,R.string.skill_list_title};
@@ -33,9 +33,9 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initViews(Bundle savedInstanceState) {
         setContentView(R.layout.activity_main);
-        recyclerView= (RecyclerView) findViewById(R.id.main_rec);
+        mainRecyclerView = (RecyclerView) findViewById(R.id.main_rec);
         //设置并列2行的layoutManager
-        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+        mainRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
         MainActRecAdapter adapter=new MainActRecAdapter(datas);
         adapter.setOnItemClickListener(new MainActRecAdapter.OnItemClickListener() {
             @Override
@@ -43,7 +43,7 @@ public class MainActivity extends BaseActivity {
                 enterActivity(position);
             }
         });
-        recyclerView.setAdapter(adapter);
+        mainRecyclerView.setAdapter(adapter);
     }
 
     /**
