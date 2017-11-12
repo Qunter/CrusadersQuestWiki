@@ -49,6 +49,7 @@ public class WebDetailActivity extends BaseActivity {
         Log.e("dadahe", "do" );
 
         webDetaiWebView.setWebViewClient(new WebViewClient(){
+
             @Override
             public void onPageFinished(WebView view, String url) {
                 String fun = "javascript:function getClass(parent,sClass){var aEle=parent.getElementsByTagName('div');var aResult=[];var i=0;for(i<0; i<aEle.length; i++){if(aEle[i].className==sClass){aResult.push(aEle[i]);}};return aResult;}";
