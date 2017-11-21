@@ -30,10 +30,25 @@
 
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
-    <WebView
-        android:id="@+id/webdetail_webview"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"/>
+        android:layout_height="match_parent">
+        <WebView
+            android:id="@+id/webdetail_webview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"/>
+        <View
+            android:id="@+id/webdetail_interrupt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/webview_backgroundColor"/>
+        <ProgressBar
+            android:id="@+id/webdetail_progressBar"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
 </LinearLayout>

@@ -8,4 +8,6 @@
     <color name="main_backgroundColor">#EDEDED</color>
 
     <color name="titleColor">#dd000000</color>
+
+    <color name="webview_backgroundColor">#FFFFFF</color>
 </resources>
