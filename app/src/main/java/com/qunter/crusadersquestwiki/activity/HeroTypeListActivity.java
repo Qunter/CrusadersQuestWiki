@@ -27,7 +27,7 @@ public class HeroTypeListActivity extends BaseActivity implements View.OnClickLi
     private List<HeroListActRecItemData> datas = new ArrayList<HeroListActRecItemData>();
     private int[] itemPicDatas = {R.drawable.ic_warrior,R.drawable.ic_paladin,R.drawable.ic_archer,R.drawable.ic_hunter,R.drawable.ic_wizard,R.drawable.ic_priest};
     private int[] itemContentDatas = {R.string.warrior,R.string.paladin,R.string.archer,R.string.hunter,R.string.wizard,R.string.priest};
-    private final int HERO=0,EQUIPMENT=1;
+    private final int HERO=0,EQUIPMENT=1,SKILL=2;
     private int from = 0;
     private String title = null;
 
@@ -69,6 +69,9 @@ public class HeroTypeListActivity extends BaseActivity implements View.OnClickLi
                         startActivity(new Intent(getApplicationContext(),EquipmentListActivity.class)
                                 .putExtra("heroType",getString(itemContentDatas[position])));
                         break;
+                    case SKILL:
+                        startActivity(new Intent(getApplicationContext(),SkillListActivity.class)
+                                .putExtra("heroType",getString(itemContentDatas[position])));
                 }
             }
         });

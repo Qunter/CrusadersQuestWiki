@@ -27,7 +27,6 @@ public class MainActivity extends BaseActivity {
             data.setTv_content(getString(itemContentDatas[i]));
             datas.add(data);
         }
-
     }
 
     @Override
@@ -50,21 +49,9 @@ public class MainActivity extends BaseActivity {
      * 进入对应activity
      */
     private void enterActivity(int position){
-        switch (position){
-            case 0:
-                startActivity(new Intent(getApplicationContext(),HeroTypeListActivity.class)
-                        .putExtra("listType",position)
-                        .putExtra("listTitle",getString(itemContentDatas[position])));
-                break;
-            case 1:
-                startActivity(new Intent(getApplicationContext(),HeroTypeListActivity.class)
-                        .putExtra("listType",position)
-                        .putExtra("listTitle",getString(itemContentDatas[position])));
-                break;
-            case 2:
-                startActivity(new Intent(getApplicationContext(),SkillListActivity.class));
-                break;
-        }
+        startActivity(new Intent(getApplicationContext(),HeroTypeListActivity.class)
+                .putExtra("listType",position)
+                .putExtra("listTitle",getString(itemContentDatas[position])));
     }
 
 

@@ -95,13 +95,12 @@ public class WebDetailActivity extends BaseActivity {
                         webDetaiWebView.loadUrl(fun);
                         webDetaiWebView.loadUrl(fun2);
                         webDetaiWebView.loadUrl(fun3);
-                        super.onPageFinished(view, url);
-                        webdetailInterruptView.setVisibility(View.GONE);
                         break;
                     case SKILL:
                         break;
                 }
-
+                super.onPageFinished(view, url);
+                webdetailInterruptView.setVisibility(View.GONE);
             }
 
             @Override
