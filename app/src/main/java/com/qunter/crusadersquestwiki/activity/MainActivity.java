@@ -32,7 +32,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initViews(Bundle savedInstanceState) {
         setContentView(R.layout.activity_main);
-        mainRecyclerView = (RecyclerView) findViewById(R.id.main_rec);
+        mainRecyclerView = (RecyclerView) findViewById(R.id.main_list_rec);
         //设置并列2行的layoutManager
         mainRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
         MainActRecAdapter adapter=new MainActRecAdapter(datas);

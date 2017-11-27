@@ -15,13 +15,13 @@
             app:theme="@style/Theme.AppCompat.Light"
             android:background="@color/main_actionbar">
             <ImageView
-                android:id="@+id/webdetail_backBtn"
+                android:id="@+id/webDetail_backBtn_iv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:src="@drawable/ic_back_black_36dp"/>
             <TextView
-                android:id="@+id/webdetail_title_tv"
+                android:id="@+id/webDetail_title_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -34,18 +34,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <WebView
-            android:id="@+id/webdetail_webview"
+            android:id="@+id/webDetail_content_webview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"/>
         <View
-            android:id="@+id/webdetail_interrupt"
+            android:id="@+id/webDetail_interrupt_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/webview_backgroundColor"/>
         <ProgressBar
-            android:id="@+id/webdetail_progressBar"
+            android:id="@+id/webDetail_pgb_progressBar"
             android:layout_centerInParent="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>

@@ -64,7 +64,7 @@ public class EquipmentListActivity extends BaseActivity implements DataCallback<
     @Override
     protected void initViews(Bundle savedInstanceState) {
         setContentView(R.layout.activity_equipmentlist);
-        equipmentListBackBtn = (ImageView) findViewById(R.id.equipmentList_backBtn);
+        equipmentListBackBtn = (ImageView) findViewById(R.id.equipmentList_backBtn_iv);
         equipmentListBackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,7 +75,7 @@ public class EquipmentListActivity extends BaseActivity implements DataCallback<
         equipmentListTitle = (TextView) findViewById(R.id.equipmentList_title_tv);
         equipmentListTitle.setText(heroType+getString(R.string.equipment_list_title));
 
-        recyclerView = (RecyclerView) findViewById(R.id.equipment_list_rec);
+        recyclerView = (RecyclerView) findViewById(R.id.equipmentList_list_rec);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
     }
 

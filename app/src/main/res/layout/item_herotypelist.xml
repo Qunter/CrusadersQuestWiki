@@ -19,7 +19,7 @@
         android:orientation="horizontal"
         android:padding="10dp">
         <ImageView
-            android:id="@+id/item_iv"
+            android:id="@+id/item_heroTypeList_img_iv"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginTop="5dp"
@@ -27,7 +27,7 @@
             android:layout_marginLeft="15dp"
             android:layout_marginRight="50dp"/>
         <TextView
-            android:id="@+id/item_tv"
+            android:id="@+id/item_heroTypeList_name_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>

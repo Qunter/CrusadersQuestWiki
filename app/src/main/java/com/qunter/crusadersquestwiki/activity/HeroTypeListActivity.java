@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.qunter.crusadersquestwiki.R;
-import com.qunter.crusadersquestwiki.adapter.HeroListActRecAdapter;
+import com.qunter.crusadersquestwiki.adapter.HeroTypeListActRecAdapter;
 import com.qunter.crusadersquestwiki.base.BaseActivity;
 import com.qunter.crusadersquestwiki.entity.HeroListActRecItemData;
 
@@ -48,16 +48,16 @@ public class HeroTypeListActivity extends BaseActivity implements View.OnClickLi
     protected void initViews(Bundle savedInstanceState) {
         setContentView(R.layout.activity_herotypelist);
 
-        heroTypeListBackBtn = (ImageView) findViewById(R.id.heroList_backBtn);
+        heroTypeListBackBtn = (ImageView) findViewById(R.id.heroTypeList_backBtn_iv);
         heroTypeListBackBtn.setOnClickListener(this);
 
         heroTypeListTitle = (TextView) findViewById(R.id.heroTypeList_title_tv);
         heroTypeListTitle.setText(title);
 
-        recyclerView = (RecyclerView) findViewById(R.id.heroType_rec);
+        recyclerView = (RecyclerView) findViewById(R.id.heroTypeList_list_rec);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        HeroListActRecAdapter adapter = new HeroListActRecAdapter(datas);
-        adapter.setOnItemClickListener(new HeroListActRecAdapter.OnItemClickListener() {
+        HeroTypeListActRecAdapter adapter = new HeroTypeListActRecAdapter(datas);
+        adapter.setOnItemClickListener(new HeroTypeListActRecAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                 switch (from){
@@ -81,7 +81,7 @@ public class HeroTypeListActivity extends BaseActivity implements View.OnClickLi
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.heroList_backBtn:
+            case R.id.heroTypeList_backBtn_iv:
                 finish();
                 break;
         }

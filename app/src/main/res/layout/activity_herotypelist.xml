@@ -18,7 +18,7 @@
             app:theme="@style/Theme.AppCompat.Light"
             android:background="@color/main_actionbar">
             <ImageView
-                android:id="@+id/heroList_backBtn"
+                android:id="@+id/heroTypeList_backBtn_iv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
@@ -34,7 +34,7 @@
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/heroType_rec"
+        android:id="@+id/heroTypeList_list_rec"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

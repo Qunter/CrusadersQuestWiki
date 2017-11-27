@@ -30,7 +30,7 @@ public class EquipmentListRecAdapter extends RecyclerView.Adapter<EquipmentListR
     }
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_equipment_list,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_equipmentlist,parent,false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
@@ -67,12 +67,12 @@ public class EquipmentListRecAdapter extends RecyclerView.Adapter<EquipmentListR
         private TextView equipment_name,equipment_rate,equipment_attack,equipment_aspd,equipment_for;
         public ViewHolder(View itemView) {
             super(itemView);
-            equipment_img = (ImageView) itemView.findViewById(R.id.equipment_img);
-            equipment_name = (TextView) itemView.findViewById(R.id.equipment_name);
-            equipment_rate = (TextView) itemView.findViewById(R.id.equipment_rate);
-            equipment_attack = (TextView) itemView.findViewById(R.id.equipment_attack);
-            equipment_aspd = (TextView) itemView.findViewById(R.id.equipment_aspd);
-            equipment_for = (TextView) itemView.findViewById(R.id.equipment_for);
+            equipment_img = (ImageView) itemView.findViewById(R.id.item_equipmentList_img_iv);
+            equipment_name = (TextView) itemView.findViewById(R.id.item_equipmentList_name_tv);
+            equipment_rate = (TextView) itemView.findViewById(R.id.item_equipmentList_rate_tv);
+            equipment_attack = (TextView) itemView.findViewById(R.id.item_equipmentList_attack_tv);
+            equipment_aspd = (TextView) itemView.findViewById(R.id.item_equipmentList_aspd_tv);
+            equipment_for = (TextView) itemView.findViewById(R.id.item_equipmentList_for_tv);
         }
     }
 

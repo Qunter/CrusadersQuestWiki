@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.qunter.crusadersquestwiki.R;
-import com.qunter.crusadersquestwiki.adapter.HeroInfoActRecAdapter;
+import com.qunter.crusadersquestwiki.adapter.HeroListActRecAdapter;
 import com.qunter.crusadersquestwiki.base.BaseActivity;
 import com.qunter.crusadersquestwiki.engine.DataCallback;
 import com.qunter.crusadersquestwiki.engine.HeroDataGetterHellper;
@@ -30,7 +30,7 @@ public class HeroListActivity extends BaseActivity implements DataCallback<HeroD
     private ImageView heroListBackBtn;
     private TextView heroListTitle;
     private HeroDataGetterHellper heroDataGetterHellper = new HeroDataGetterHellper();
-    private HeroInfoActRecAdapter adapter;
+    private HeroListActRecAdapter adapter;
     private List<HeroData> datas = new ArrayList<HeroData>();
     private String heroType = "null";
     private final int PUSHDATAINTORECYCLERVIEW = 0x00;
@@ -40,8 +40,8 @@ public class HeroListActivity extends BaseActivity implements DataCallback<HeroD
             super.handleMessage(msg);
             switch (msg.what){
                 case PUSHDATAINTORECYCLERVIEW:
-                    adapter = new HeroInfoActRecAdapter(getApplicationContext(),datas);
-                    adapter.setOnItemClickListener(new HeroInfoActRecAdapter.OnItemClickListener() {
+                    adapter = new HeroListActRecAdapter(getApplicationContext(),datas);
+                    adapter.setOnItemClickListener(new HeroListActRecAdapter.OnItemClickListener() {
                         @Override
                         public void onItemClick(View view, int position) {
                             startActivity(new Intent(getApplicationContext(),WebDetailActivity.class)
@@ -66,13 +66,13 @@ public class HeroListActivity extends BaseActivity implements DataCallback<HeroD
     @Override
     protected void initViews(Bundle savedInstanceState) {
         setContentView(R.layout.activity_herolist);
-        recyclerView = (RecyclerView) findViewById(R.id.heroList_rec);
+        recyclerView = (RecyclerView) findViewById(R.id.herolist_list_rec);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
-        heroListTitle = (TextView) findViewById(R.id.heroList_title_tv);
+        heroListTitle = (TextView) findViewById(R.id.herolist_title_tv);
         heroListTitle.setText(heroType+getString(R.string.hero_list_title));
 
-        heroListBackBtn = (ImageView) findViewById(R.id.heroList_backBtn);
+        heroListBackBtn = (ImageView) findViewById(R.id.herolist_back_iv);
         heroListBackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

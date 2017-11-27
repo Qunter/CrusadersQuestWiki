@@ -3,7 +3,6 @@ package com.qunter.crusadersquestwiki.activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
@@ -38,18 +37,18 @@ public class WebDetailActivity extends BaseActivity {
     @Override
     protected void initViews(Bundle savedInstanceState) {
         setContentView(R.layout.activity_webdetail);
-        webDetaiTitleTv = (TextView) findViewById(R.id.webdetail_title_tv);
+        webDetaiTitleTv = (TextView) findViewById(R.id.webDetail_title_tv);
         webDetaiTitleTv.setText(title);
-        webDetailBackBtn = (ImageView) findViewById(R.id.webdetail_backBtn);
+        webDetailBackBtn = (ImageView) findViewById(R.id.webDetail_backBtn_iv);
         webDetailBackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-        webDetailProgressBar = (ProgressBar) findViewById(R.id.webdetail_progressBar);
-        webdetailInterruptView = findViewById(R.id.webdetail_interrupt);
-        webDetaiWebView = (WebView) findViewById(R.id.webdetail_webview);
+        webDetailProgressBar = (ProgressBar) findViewById(R.id.webDetail_pgb_progressBar);
+        webdetailInterruptView = findViewById(R.id.webDetail_interrupt_view);
+        webDetaiWebView = (WebView) findViewById(R.id.webDetail_content_webview);
         //设置 缓存模式
         webDetaiWebView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
         // 开启 DOM storage API 功能

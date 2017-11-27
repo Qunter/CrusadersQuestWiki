@@ -20,56 +20,55 @@
         android:padding="10dp">
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:orientation="horizontal">
             <ImageView
-                android:id="@+id/hero_img"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:id="@+id/item_equipmentList_img_iv"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="20dp"/>
+                android:layout_marginRight="10dp"/>
             <TextView
-                android:id="@+id/hero_name"
+                android:id="@+id/item_equipmentList_name_tv"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="勇士名"/>
+                android:gravity="center"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_weight="3"
             android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="horizontal">
-            <ImageView
-                android:id="@+id/hero_rank_1"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_margin="5dp"/>
-            <ImageView
-                android:id="@+id/hero_rank_2"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_margin="5dp"/>
-            <ImageView
-                android:id="@+id/hero_rank_3"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_margin="5dp"/>
-            <ImageView
-                android:id="@+id/hero_rank_4"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_margin="5dp"/>
-            <ImageView
-                android:id="@+id/hero_rank_5"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_margin="5dp"/>
+            <TextView
+                android:id="@+id/item_equipmentList_rate_tv"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="center"/>
+            <TextView
+                android:id="@+id/item_equipmentList_attack_tv"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="center"/>
+            <TextView
+                android:id="@+id/item_equipmentList_aspd_tv"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="center"/>
+            <TextView
+                android:id="@+id/item_equipmentList_for_tv"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:gravity="center"/>
         </LinearLayout>
     </LinearLayout>
 </android.support.v7.widget.CardView>

@@ -8,33 +8,29 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.qunter.crusadersquestwiki.R;
-import com.qunter.crusadersquestwiki.entity.MainActRecItemData;
+import com.qunter.crusadersquestwiki.entity.HeroListActRecItemData;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Administrator on 2017/9/16.
+ * Created by Administrator on 2017/9/23.
  */
 
-public class MainActRecAdapter extends RecyclerView.Adapter<MainActRecAdapter.ViewHolder>{
-    private List<MainActRecItemData> datas =new ArrayList<MainActRecItemData>();
+public class HeroTypeListActRecAdapter extends RecyclerView.Adapter<HeroTypeListActRecAdapter.ViewHolder>{
+    private List<HeroListActRecItemData> datas;
     private OnItemClickListener onItemClickListener;
-    //构造方法传入数据
-    public MainActRecAdapter(List<MainActRecItemData> datas){
+    //构造方法传入参数
+    public HeroTypeListActRecAdapter(List<HeroListActRecItemData> datas){
         this.datas = datas;
     }
 
-    //创造ViewHolder
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        //把item的Layout转化成View传给ViewHolder
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_mainlist,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_herotypelist,parent,false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }
 
-    //    将数据放入相应的位置
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.item_iv.setImageResource(datas.get(position).getIv_imgResource());
@@ -55,15 +51,14 @@ public class MainActRecAdapter extends RecyclerView.Adapter<MainActRecAdapter.Vi
     public int getItemCount() {
         return datas.size();
     }
-
     //ViewHolder绑定控件
     static class ViewHolder extends RecyclerView.ViewHolder{
         private ImageView item_iv;
         private TextView item_tv;
         public ViewHolder(View itemView) {
             super(itemView);
-            item_iv = (ImageView) itemView.findViewById(R.id.item_main_img_iv);
-            item_tv = (TextView) itemView.findViewById(R.id.item_main_name_tv);
+            item_iv = (ImageView) itemView.findViewById(R.id.item_heroTypeList_img_iv);
+            item_tv = (TextView) itemView.findViewById(R.id.item_heroTypeList_name_tv);
         }
     }
     /**
@@ -76,8 +71,7 @@ public class MainActRecAdapter extends RecyclerView.Adapter<MainActRecAdapter.Vi
     /**
      * 设置点击事件方法
      */
-    public void setOnItemClickListener(OnItemClickListener onItemClickListener){
+    public void setOnItemClickListener(HeroTypeListActRecAdapter.OnItemClickListener onItemClickListener){
         this.onItemClickListener = onItemClickListener;
     }
-
 }
