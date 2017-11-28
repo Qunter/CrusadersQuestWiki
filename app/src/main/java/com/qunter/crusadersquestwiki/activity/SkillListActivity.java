@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.qunter.crusadersquestwiki.R;
 import com.qunter.crusadersquestwiki.adapter.SkillListRecAdapter;
 import com.qunter.crusadersquestwiki.base.BaseActivity;
+import com.qunter.crusadersquestwiki.engine.DataCallback;
 import com.qunter.crusadersquestwiki.engine.SkillDataGetterHellper;
 import com.qunter.crusadersquestwiki.entity.SkillData;
 
@@ -22,7 +23,7 @@ import java.util.List;
  * Created by Administrator on 2017/9/23.
  */
 
-public class SkillListActivity extends BaseActivity {
+public class SkillListActivity extends BaseActivity implements DataCallback<SkillData> {
     private ImageView skillListBackBtn;
     private TextView skillListTitle;
     private RecyclerView recyclerView;
@@ -56,12 +57,29 @@ public class SkillListActivity extends BaseActivity {
     */
     @Override
     protected void initVariablesAndService() {
-        heroType = getIntent().getExtras().getString("heroType");
-        //getHeroData();
+        //heroType = getIntent().getExtras().getString("heroType");
+        getHeroData();
     }
 
     @Override
     protected void initViews(Bundle savedInstanceState) {
         setContentView(R.layout.activity_skilllist);
+    }
+
+    /**
+     * jsoup爬取勇士数据
+     */
+    private void getHeroData(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                skillDataGetterHellper.getDataAndSendCallback("剑士特殊技能",SkillListActivity.this);
+            }
+        }).start();
+    }
+
+    @Override
+    public void afterGetData(List<SkillData> datas) {
+
     }
 }
