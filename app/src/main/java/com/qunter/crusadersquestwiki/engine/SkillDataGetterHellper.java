@@ -24,7 +24,7 @@ public class SkillDataGetterHellper implements DataGetter {
      * 使用jsoup获取数据
      */
     private void getDataFromUrlAndSave(String endString){
-        String url = "http://wiki.joyme.com/cq/"+endString;
+        String url = "http://wiki.joyme.com/cq/"+endString+"特殊技能";
         Connection conn = Jsoup.connect(url);
         // 修改http包中的header,伪装成浏览器进行抓取
         conn.header("User-Agent", "Mozilla/5.0 (X11; Linux x86_64; rv:32.0) Gecko/    20100101 Firefox/32.0");
@@ -58,15 +58,18 @@ public class SkillDataGetterHellper implements DataGetter {
             SkillData data;
             for(int i=0;i<filterfinall.size()/4;i++){
                 data = new SkillData();
+                //Log.e("hehe", filterfinall.get(i*4).toString() );
+                //Log.e("hehe", filterfinal.toString());
                 data.setSkilllDetailUrl(filterfinall.get(i*4).select("a").get(0).absUrl("href"));
-                Log.e("hehe", filterfinall.get(i*4).toString() );
-                Log.e("heheda",filterfinall.get(i*4).select("a").get(0).absUrl("href"));
-                data.setSkillName(filterfinall.get(i*4).attr("title"));
-                //Log.e("element",element.attr("title").substring(3));
-                data.setSkillImgUrl(filterfinall.get(i*4).attr("src"));
-                //data.setSkillType(element.select("td").get(2).text());
-                //data.setSkillDetail(element.select("td").get(3).text());
-                //Log.e("url", "do");
+                //Log.e("heheda",filterfinall.get(i*4).select("a").get(0).absUrl("href"));
+                data.setSkillName(filterfinall.get(i*4).select("a").get(0).attr("title"));
+                //Log.e("element",filterfinall.get(i*4).select("a").get(0).attr("title"));
+                data.setSkillImgUrl(filterfinall.get(i*4).select("img").get(0).absUrl("src"));
+                //Log.e("url", filterfinall.get(i*4).select("img").get(0).absUrl("src"));
+                data.setSkillType(filterfinall.get(i*4+2).text());
+                //Log.e("url", filterfinall.get(i*4+2).text());
+                data.setSkillDetail(filterfinall.get(i*4+3).text());
+                //Log.e("url", filterfinall.get(i*4+3).text());
                 datas.add(data);
             }
             //getHeroInfoAndSave(filterMostly.toString()+filterRate.toString());
@@ -78,6 +81,6 @@ public class SkillDataGetterHellper implements DataGetter {
     @Override
     public void getDataAndSendCallback(String endString, DataCallback callback) {
         getDataFromUrlAndSave(endString);
-        //callback.afterGetData(datas);
+        callback.afterGetData(datas);
     }
 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -57,13 +58,17 @@ public class SkillListActivity extends BaseActivity implements DataCallback<Skil
     */
     @Override
     protected void initVariablesAndService() {
-        //heroType = getIntent().getExtras().getString("heroType");
+        heroType = getIntent().getExtras().getString("heroType");
         getHeroData();
     }
 
     @Override
     protected void initViews(Bundle savedInstanceState) {
         setContentView(R.layout.activity_skilllist);
+
+        skillListTitle = (TextView) findViewById(R.id.skilllist_title_tv);
+        skillListTitle.setText(heroType+"技能图鉴");
+
         skillListBackBtn = (ImageView) findViewById(R.id.skilllist_back_iv);
         skillListBackBtn.setOnClickListener(this);
     }
@@ -75,14 +80,16 @@ public class SkillListActivity extends BaseActivity implements DataCallback<Skil
         new Thread(new Runnable() {
             @Override
             public void run() {
-                skillDataGetterHellper.getDataAndSendCallback("剑士特殊技能",SkillListActivity.this);
+                skillDataGetterHellper.getDataAndSendCallback(heroType,SkillListActivity.this);
             }
         }).start();
     }
 
     @Override
     public void afterGetData(List<SkillData> datas) {
-
+        this.datas = datas;
+        handler.sendEmptyMessage(PUSHDATAINTORECYCLERVIEW);
+        Log.e("afterGetData", datas.size()+"" );
     }
 
     @Override
