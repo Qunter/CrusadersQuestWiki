@@ -64,7 +64,6 @@ public class SkillListActivity extends BaseActivity implements DataCallback<Skil
     @Override
     protected void initViews(Bundle savedInstanceState) {
         setContentView(R.layout.activity_skilllist);
-
         skillListBackBtn = (ImageView) findViewById(R.id.skilllist_back_iv);
         skillListBackBtn.setOnClickListener(this);
     }
