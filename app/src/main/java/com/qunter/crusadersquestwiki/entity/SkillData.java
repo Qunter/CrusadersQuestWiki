@@ -9,7 +9,7 @@ public class SkillData {
     private String SkillImgUrl;
     private String SkillType;
     private String SkillDetail;
-    private String EquipmentDetailUrl;
+    private String SkilllDetailUrl;
 
     public String getSkillName() {
         return SkillName;
@@ -43,11 +43,11 @@ public class SkillData {
         SkillDetail = skillDetail;
     }
 
-    public String getEquipmentDetailUrl() {
-        return EquipmentDetailUrl;
+    public String getSkilllDetailUrl() {
+        return SkilllDetailUrl;
     }
 
-    public void setEquipmentDetailUrl(String equipmentDetailUrl) {
-        EquipmentDetailUrl = equipmentDetailUrl;
+    public void setSkilllDetailUrl(String skilllDetailUrl) {
+        SkilllDetailUrl = skilllDetailUrl;
     }
 }

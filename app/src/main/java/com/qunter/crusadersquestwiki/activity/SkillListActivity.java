@@ -23,7 +23,7 @@ import java.util.List;
  * Created by Administrator on 2017/9/23.
  */
 
-public class SkillListActivity extends BaseActivity implements DataCallback<SkillData> {
+public class SkillListActivity extends BaseActivity implements DataCallback<SkillData>, View.OnClickListener {
     private ImageView skillListBackBtn;
     private TextView skillListTitle;
     private RecyclerView recyclerView;
@@ -44,7 +44,7 @@ public class SkillListActivity extends BaseActivity implements DataCallback<Skil
                         @Override
                         public void onItemClick(View view, int position) {
                             startActivity(new Intent(getApplicationContext(),WebDetailActivity.class)
-                                    .putExtra("url",datas.get(position).getEquipmentDetailUrl())
+                                    .putExtra("url",datas.get(position).getSkilllDetailUrl())
                                     .putExtra("title",datas.get(position).getEquipmentName())
                                     .putExtra("detailType",WebDetailActivity.DetailType.EQUIPMENT));
                         }
@@ -64,6 +64,9 @@ public class SkillListActivity extends BaseActivity implements DataCallback<Skil
     @Override
     protected void initViews(Bundle savedInstanceState) {
         setContentView(R.layout.activity_skilllist);
+
+        skillListBackBtn = (ImageView) findViewById(R.id.skilllist_back_iv);
+        skillListBackBtn.setOnClickListener(this);
     }
 
     /**
@@ -81,5 +84,14 @@ public class SkillListActivity extends BaseActivity implements DataCallback<Skil
     @Override
     public void afterGetData(List<SkillData> datas) {
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.skilllist_back_iv:
+                finish();
+                break;
+        }
     }
 }
