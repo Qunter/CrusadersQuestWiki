@@ -7,7 +7,6 @@ import com.qunter.crusadersquestwiki.entity.SkillData;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
@@ -60,7 +59,7 @@ public class SkillDataGetterHellper implements DataGetter {
                 data = new SkillData();
                 //Log.e("hehe", filterfinall.get(i*4).toString() );
                 //Log.e("hehe", filterfinal.toString());
-                data.setSkilllDetailUrl(filterfinall.get(i*4).select("a").get(0).absUrl("href"));
+                data.setSkillDetailUrl(filterfinall.get(i*4).select("a").get(0).absUrl("href"));
                 //Log.e("heheda",filterfinall.get(i*4).select("a").get(0).absUrl("href"));
                 data.setSkillName(filterfinall.get(i*4).select("a").get(0).attr("title"));
                 //Log.e("element",filterfinall.get(i*4).select("a").get(0).attr("title"));

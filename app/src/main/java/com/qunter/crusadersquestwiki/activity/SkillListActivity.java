@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -33,7 +34,6 @@ public class SkillListActivity extends BaseActivity implements DataCallback<Skil
     private SkillListRecAdapter adapter;
     private String heroType = "null";
     private final int PUSHDATAINTORECYCLERVIEW = 0x00;
-    /*
     private Handler handler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
@@ -45,9 +45,9 @@ public class SkillListActivity extends BaseActivity implements DataCallback<Skil
                         @Override
                         public void onItemClick(View view, int position) {
                             startActivity(new Intent(getApplicationContext(),WebDetailActivity.class)
-                                    .putExtra("url",datas.get(position).getSkilllDetailUrl())
-                                    .putExtra("title",datas.get(position).getEquipmentName())
-                                    .putExtra("detailType",WebDetailActivity.DetailType.EQUIPMENT));
+                                    .putExtra("url",datas.get(position).getSkillDetailUrl())
+                                    .putExtra("title",datas.get(position).getSkillName())
+                                    .putExtra("detailType",WebDetailActivity.DetailType.SKILL));
                         }
                     });
                     recyclerView.setAdapter(adapter);
@@ -55,7 +55,6 @@ public class SkillListActivity extends BaseActivity implements DataCallback<Skil
             }
         }
     };
-    */
     @Override
     protected void initVariablesAndService() {
         heroType = getIntent().getExtras().getString("heroType");
@@ -71,6 +70,9 @@ public class SkillListActivity extends BaseActivity implements DataCallback<Skil
 
         skillListBackBtn = (ImageView) findViewById(R.id.skilllist_back_iv);
         skillListBackBtn.setOnClickListener(this);
+
+        recyclerView = (RecyclerView) findViewById(R.id.skilllist_list_rec);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
     }
 
     /**
