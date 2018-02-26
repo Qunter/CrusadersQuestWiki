@@ -25,7 +25,7 @@ import java.util.List;
  * Created by Administrator on 2017/9/23.
  */
 
-public class SkillListActivity extends BaseActivity implements DataCallback<SkillData>, View.OnClickListener {
+public class SkillListActivity extends BaseActivity implements DataCallback<SkillData> {
     private ImageView skillListBackBtn;
     private TextView skillListTitle;
     private RecyclerView recyclerView;
@@ -69,7 +69,12 @@ public class SkillListActivity extends BaseActivity implements DataCallback<Skil
         skillListTitle.setText(heroType+"技能图鉴");
 
         skillListBackBtn = (ImageView) findViewById(R.id.skilllist_back_iv);
-        skillListBackBtn.setOnClickListener(this);
+        skillListBackBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         recyclerView = (RecyclerView) findViewById(R.id.skilllist_list_rec);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
@@ -94,12 +99,4 @@ public class SkillListActivity extends BaseActivity implements DataCallback<Skil
         Log.e("afterGetData", datas.size()+"" );
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.skilllist_back_iv:
-                finish();
-                break;
-        }
-    }
 }
