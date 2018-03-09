@@ -17,8 +17,8 @@ import java.util.List;
 public class MainActivity extends BaseActivity {
     private RecyclerView mainRecyclerView;
     private List<MainActRecItemData> datas = new ArrayList<MainActRecItemData>();
-    private int[] itemPicDatas = {R.drawable.ic_hero,R.drawable.ic_equipment,R.drawable.ic_skill};
-    private int[] itemContentDatas = {R.string.hero_list_title,R.string.equipment_list_title,R.string.skill_list_title};
+    private int[] itemPicDatas = {R.drawable.ic_hero,R.drawable.ic_equipment,R.drawable.ic_skill,R.drawable.ic_skill};
+    private int[] itemContentDatas = {R.string.hero_list_title,R.string.equipment_list_title,R.string.skill_list_title,R.string.setting_list_title};
     @Override
     protected void initVariablesAndService() {
         for(int i=0;i<itemPicDatas.length;i++){
@@ -49,9 +49,19 @@ public class MainActivity extends BaseActivity {
      * 进入对应activity
      */
     private void enterActivity(int position){
-        startActivity(new Intent(getApplicationContext(),HeroTypeListActivity.class)
-                .putExtra("listType",position)
-                .putExtra("listTitle",getString(itemContentDatas[position])));
+        switch (position){
+            case 0:
+            case 1:
+            case 2:
+                startActivity(new Intent(getApplicationContext(),HeroTypeListActivity.class)
+                        .putExtra("listType",position)
+                        .putExtra("listTitle",getString(itemContentDatas[position])));
+                break;
+            case 3:
+                startActivity(new Intent(getApplicationContext(),SettingListActivity.class));
+                break;
+        }
+
     }
 
 

@@ -35,6 +35,8 @@
         <activity android:name=".activity.EquipmentListActivity"/>
         <!-- 技能图鉴界面 -->
         <activity android:name=".activity.SkillListActivity"/>
+        <!-- 设置界面 -->
+        <activity android:name=".activity.SettingListActivity"/>
     </application>
 
 </manifest>
