@@ -3,6 +3,8 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 25
     buildToolsVersion '26.0.2'
+    //bmob兼容android6.0所需
+    useLibrary 'org.apache.http.legacy'
     defaultConfig {
         applicationId "com.qunter.crusadersquestwiki"
         minSdkVersion 21
@@ -34,4 +36,6 @@ dependencies {
     compile "com.github.bumptech.glide:glide:3.7.0"
     //jsoup爬虫依赖
     compile 'org.jsoup:jsoup:1.10.2'
+    //bmob依赖
+    compile 'cn.bmob.android:bmob-sdk:3.5.9'
 }

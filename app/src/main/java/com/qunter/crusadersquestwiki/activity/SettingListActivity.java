@@ -16,7 +16,6 @@ import com.qunter.crusadersquestwiki.base.BaseActivity;
 public class SettingListActivity extends BaseActivity {
     private ImageView settingListBackBtn;
     private TextView settingListTitle;
-    private RecyclerView recyclerView;
     @Override
     protected void initVariablesAndService() {
 
@@ -36,8 +35,6 @@ public class SettingListActivity extends BaseActivity {
 
         settingListTitle = (TextView) findViewById(R.id.settinglist_title_tv);
         settingListTitle.setText(R.string.setting_list_title);
-
-        recyclerView = (RecyclerView) findViewById(R.id.settinglist_list_rec);
 
     }
 }
