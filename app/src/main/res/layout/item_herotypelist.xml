@@ -28,7 +28,14 @@
             android:layout_marginRight="50dp"/>
         <TextView
             android:id="@+id/item_heroTypeList_name_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"/>
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_arrow_right_lime_500_24dp"
+            android:layout_marginRight="10dp"/>
     </LinearLayout>
 </android.support.v7.widget.CardView>

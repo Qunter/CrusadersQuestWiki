@@ -3,9 +3,12 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="colorWhite">#FFFFFF</color>
 
     <color name="main_actionbar">#FFFFFF</color>
     <color name="main_backgroundColor">#EDEDED</color>
+
+    <color name="app_backgroundColor">#E5E5E5</color>
 
     <color name="titleColor">#dd000000</color>
 
