@@ -48,17 +48,17 @@ public class HeroDataGetterHellper implements DataGetter{
             //获取到勇士评级
             Elements filterRate = filterBase.select("img[data-file-height=30]");
             /*
-            String xml = filterBase.toString();
+            String file_paths = filterBase.toString();
 
-            if(xml.length() > 4000) {
-                for(int i=0;i<xml.length();i+=4000){
-                    if(i+4000<xml.length())
-                        Log.i("getDataFromUrl"+i,xml.substring(i, i+4000));
+            if(file_paths.length() > 4000) {
+                for(int i=0;i<file_paths.length();i+=4000){
+                    if(i+4000<file_paths.length())
+                        Log.i("getDataFromUrl"+i,file_paths.substring(i, i+4000));
                     else
-                        Log.i("getDataFromUrl"+i,xml.substring(i, xml.length()));
+                        Log.i("getDataFromUrl"+i,file_paths.substring(i, file_paths.length()));
                 }
             } else
-                Log.i("getDataFromUrl",xml);
+                Log.i("getDataFromUrl",file_paths);
             */
             //Log.e("hehe", filterPicUrl.toString() );
             HeroData data;

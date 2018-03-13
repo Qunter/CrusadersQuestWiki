@@ -38,4 +38,6 @@ dependencies {
     compile 'org.jsoup:jsoup:1.10.2'
     //bmob依赖
     compile 'cn.bmob.android:bmob-sdk:3.5.9'
+    compile 'com.android.support:support-v4:25.4.0'
+
 }

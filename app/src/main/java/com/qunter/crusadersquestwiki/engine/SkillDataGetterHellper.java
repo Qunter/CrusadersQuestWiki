@@ -40,17 +40,17 @@ public class SkillDataGetterHellper implements DataGetter {
             Elements filterfinal = filterBase.select("tr");
             Elements filterfinall = filterfinal.select("td");
             /*
-            String xml = filterfinal.get(1).toString();
+            String file_paths = filterfinal.get(1).toString();
 
-            if(xml.length() > 4000) {
-                for(int i=0;i<xml.length();i+=4000){
-                    if(i+4000<xml.length())
-                        Log.i("getDataFromUrl"+i,xml.substring(i, i+4000));
+            if(file_paths.length() > 4000) {
+                for(int i=0;i<file_paths.length();i+=4000){
+                    if(i+4000<file_paths.length())
+                        Log.i("getDataFromUrl"+i,file_paths.substring(i, i+4000));
                     else
-                        Log.i("getDataFromUrl"+i,xml.substring(i, xml.length()));
+                        Log.i("getDataFromUrl"+i,file_paths.substring(i, file_paths.length()));
                 }
             } else
-                Log.i("getDataFromUrl",xml);
+                Log.i("getDataFromUrl",file_paths);
 
             //Log.e("hehe", filterPicUrl.toString() );
             */

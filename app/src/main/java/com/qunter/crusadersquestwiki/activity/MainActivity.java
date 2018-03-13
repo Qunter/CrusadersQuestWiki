@@ -14,6 +14,8 @@ import com.qunter.crusadersquestwiki.entity.MainActRecItemData;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.bmob.v3.Bmob;
+
 public class MainActivity extends BaseActivity {
     private RecyclerView mainRecyclerView;
     private List<MainActRecItemData> datas = new ArrayList<MainActRecItemData>();
@@ -21,6 +23,7 @@ public class MainActivity extends BaseActivity {
     private int[] itemContentDatas = {R.string.hero_list_title,R.string.equipment_list_title,R.string.skill_list_title,R.string.setting_list_title};
     @Override
     protected void initVariablesAndService() {
+        Bmob.initialize(this, "0b29944baa0b71a4a563ffedf4cc5b6b");
         for(int i=0;i<itemPicDatas.length;i++){
             MainActRecItemData data = new MainActRecItemData();
             data.setIv_imgResource(itemPicDatas[i]);
