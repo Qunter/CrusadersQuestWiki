@@ -44,8 +44,6 @@ public class SettingListActivity extends BaseActivity implements View.OnClickLis
 
         settingListUpgradeBtn = (LinearLayout) findViewById(R.id.settinglist_upgrade_Btn);
         settingListUpgradeBtn.setOnClickListener(this);
-        //发起自动更新
-        BmobUpdateAgent.update(this);
     }
 
     @Override
