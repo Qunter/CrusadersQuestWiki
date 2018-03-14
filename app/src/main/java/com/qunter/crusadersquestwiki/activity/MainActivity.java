@@ -19,7 +19,7 @@ import cn.bmob.v3.Bmob;
 public class MainActivity extends BaseActivity {
     private RecyclerView mainRecyclerView;
     private List<MainActRecItemData> datas = new ArrayList<MainActRecItemData>();
-    private int[] itemPicDatas = {R.drawable.ic_hero,R.drawable.ic_equipment,R.drawable.ic_skill,R.drawable.ic_skill};
+    private int[] itemPicDatas = {R.drawable.ic_hero,R.drawable.ic_equipment,R.drawable.ic_skill,R.drawable.ic_setting};
     private int[] itemContentDatas = {R.string.hero_list_title,R.string.equipment_list_title,R.string.skill_list_title,R.string.setting_list_title};
     @Override
     protected void initVariablesAndService() {
