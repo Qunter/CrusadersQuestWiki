@@ -47,7 +47,8 @@ public class EquipmentListActivity extends BaseActivity implements DataCallback<
                             startActivity(new Intent(getApplicationContext(),WebDetailActivity.class)
                                     .putExtra("url",datas.get(position).getEquipmentDetailUrl())
                                     .putExtra("title",datas.get(position).getEquipmentName())
-                                    .putExtra("detailType",WebDetailActivity.DetailType.EQUIPMENT));
+                                    .putExtra("detailType",WebDetailActivity.DetailType.EQUIPMENT)
+                                    .putExtra("endString",datas.get(position).getEquipmentForWho()));
                         }
                     });
                     recyclerView.setAdapter(adapter);
@@ -95,6 +96,6 @@ public class EquipmentListActivity extends BaseActivity implements DataCallback<
     public void afterGetData(List<EquipmentData> datas) {
         this.datas = datas;
         handler.sendEmptyMessage(PUSHDATAINTORECYCLERVIEW);
-        Log.e("afterGetData", datas.size()+"" );
+        //Log.e("afterGetData", datas.size()+"" );
     }
 }

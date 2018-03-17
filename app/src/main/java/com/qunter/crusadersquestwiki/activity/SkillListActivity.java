@@ -47,7 +47,8 @@ public class SkillListActivity extends BaseActivity implements DataCallback<Skil
                             startActivity(new Intent(getApplicationContext(),WebDetailActivity.class)
                                     .putExtra("url",datas.get(position).getSkillDetailUrl())
                                     .putExtra("title",datas.get(position).getSkillName())
-                                    .putExtra("detailType",WebDetailActivity.DetailType.SKILL));
+                                    .putExtra("detailType",WebDetailActivity.DetailType.SKILL)
+                                    .putExtra("endString",datas.get(position).getSkillName()));
                         }
                     });
                     recyclerView.setAdapter(adapter);
@@ -96,7 +97,7 @@ public class SkillListActivity extends BaseActivity implements DataCallback<Skil
     public void afterGetData(List<SkillData> datas) {
         this.datas = datas;
         handler.sendEmptyMessage(PUSHDATAINTORECYCLERVIEW);
-        Log.e("afterGetData", datas.size()+"" );
+        //Log.e("afterGetData", datas.size()+"" );
     }
 
 }

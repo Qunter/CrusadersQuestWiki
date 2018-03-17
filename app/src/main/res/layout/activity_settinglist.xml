@@ -50,7 +50,7 @@
                 android:layout_weight="1"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:text="在线升级"
+                android:text="@string/SettingListUpgradeTitle"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"/>
             <ImageView
@@ -81,7 +81,7 @@
                 android:layout_weight="1"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:text="关于我们"
+                android:text="@string/SettingListAboutTitle"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"/>
             <ImageView

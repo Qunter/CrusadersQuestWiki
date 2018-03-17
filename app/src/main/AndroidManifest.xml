@@ -15,7 +15,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_mine"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
@@ -41,6 +41,8 @@
         <activity android:name=".activity.SkillListActivity"/>
         <!-- 设置界面 -->
         <activity android:name=".activity.SettingListActivity"/>
+        <!-- 关于我们界面 -->
+        <activity android:name=".activity.AboutActivity"/>
         <!-- 自动更新界面 -->
         <activity
             android:name="cn.bmob.v3.update.UpdateDialogActivity"

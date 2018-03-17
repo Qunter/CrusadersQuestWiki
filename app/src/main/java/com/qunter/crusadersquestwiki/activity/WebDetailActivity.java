@@ -1,9 +1,10 @@
 package com.qunter.crusadersquestwiki.activity;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
-import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
@@ -16,6 +17,12 @@ import android.widget.TextView;
 import com.qunter.crusadersquestwiki.R;
 import com.qunter.crusadersquestwiki.base.BaseActivity;
 
+import org.jsoup.Connection;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
+import java.io.IOException;
+
 /**
  * Created by Administrator on 2017/10/11.
  */
@@ -25,14 +32,38 @@ public class WebDetailActivity extends BaseActivity {
     private WebView webDetaiWebView;
     private View webdetailInterruptView;
     private ProgressBar webDetailProgressBar;
-    private String url, title;
+    private String url, title ,endString ,selectorString;
     public enum DetailType {HERO,EQUIPMENT,SKILL}
     DetailType detailType;
+    private String htmlContent;
+    private final int GETHTMLCONTENTSUCCESS=0x00;
+    private Handler handler = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message msg) {
+            if(msg.what==GETHTMLCONTENTSUCCESS){
+                webDetaiWebView.loadDataWithBaseURL(null, htmlContent, "text/html", "UTF-8",null);
+                //Log.e("handleMessage: ", "do");
+            }
+            return false;
+        }
+    });
     @Override
     protected void initVariablesAndService() {
         url = getIntent().getStringExtra("url");
         title = getIntent().getStringExtra("title");
         detailType = (DetailType) getIntent().getSerializableExtra("detailType");
+        endString = getIntent().getStringExtra("endString");
+        switch (detailType){
+            case EQUIPMENT:
+                selectorString = getString(R.string.equimentHtmlContentSelectorString);
+                getHtmlContent();
+                break;
+            case SKILL:
+                selectorString = getString(R.string.skillHtmlContentSelectorString);
+                getHtmlContent();
+                break;
+        }
+
     }
 
     @Override
@@ -71,8 +102,7 @@ public class WebDetailActivity extends BaseActivity {
             }
         });
         webDetaiWebView.getSettings().setJavaScriptEnabled(true);
-        Log.e("dadahe", "do" );
-
+        //Log.e("dadahe", "do" );
         webDetaiWebView.setWebViewClient(new WebViewClient(){
             @Override
             public void onPageFinished(WebView view, String url) {
@@ -80,9 +110,11 @@ public class WebDetailActivity extends BaseActivity {
                     case HERO:
                         break;
                     case EQUIPMENT:
+                        /*
                         String fun = "javascript:function getClass(parent,sClass){var aEle=parent.getElementsByTagName('div');var aResult=[];var i=0;for(i<0; i<aEle.length; i++){if(aEle[i].className==sClass){aResult.push(aEle[i]);}};return aResult;}";
-                        String fun2 = "javascript:function hideOther() {getClass(document,'firstHeading2 page-header nry-h1 fn-clear')[0].style.display='none';getClass(document,'col-md-4')[0].style.display='none';getClass(document,'col-md-8')[0].style.display='none';getClass(document,'hero-info-block hero-info-block-frame hero-info-skill')[0].style.display='none';getClass(document,'hero-info-block hero-info-block-frame hero-info-spskill')[0].style.display='none';getClass(document,'hero-info-block hero-info-block-frame')[3].style.display='none';getClass(document,'hero-info-block hero-info-block-frame')[4].style.display='none';getClass(document,'date-tab clearfix')[0].style.display='none';}";
+                        String fun2 = "javascript:function hideOther() {getClass(document,'firstHeading2 page-header nry-h1 fn-clear')[0].style.display='none';getClass(document,'col-md-4')[0].style.display='none';getClass(document,'col-md-8')[0].style.display='none';getClass(document,'hero-info-block hero-info-block-frame hero-info-skill')[0].style.display='none';getClass(document,'hero-info-block hero-info-block-frame hero-info-spskill')[0].style.display='none';getClass(document,'hero-info-block hero-info-block-frame')[3].style.display='none';getClass(document,'hero-info-block hero-info-block-frame')[4].style.display='none';getClass(document,'date-tab clearfix')[0].style.display='none';getClass(document,'hero-info-block hero-info-block-frame')[0].style.display='none';}";
                         String fun3 = "javascript:hideOther();";
+                        */
                         /*
                         String funfinal = "function getClass(parent,sClass){var aEle=parent.getElementsByTagName('div');var aResult=[];var i=0;for(i<0; i<aEle.length; i++){if(aEle[i].className==sClass){aResult.push(aEle[i]);}};return aResult;}function hideOther() {getClass(document,'firstHeading2 page-header nry-h1 fn-clear')[0].style.display='none';getClass(document,'col-md-4')[0].style.display='none';getClass(document,'hero-info-block hero-info-stat')[0].style.display='none';getClass(document,'hero-info-block hero-info-block-frame hero-info-skill')[0].style.display='none';getClass(document,'hero-info-block hero-info-block-frame hero-info-spskill')[0].style.display='none';getClass(document,'date-tab clearfix')[0].style.display='none';}();";
                         webDetaiWebView.evaluateJavascript(funfinal, new ValueCallback<String>() {
@@ -92,9 +124,9 @@ public class WebDetailActivity extends BaseActivity {
                             }
                         });
                         */
-                        webDetaiWebView.loadUrl(fun);
-                        webDetaiWebView.loadUrl(fun2);
-                        webDetaiWebView.loadUrl(fun3);
+                        //webDetaiWebView.loadUrl(fun);
+                        //webDetaiWebView.loadUrl(fun2);
+                        //webDetaiWebView.loadUrl(fun3);
                         break;
                     case SKILL:
                         break;
@@ -109,6 +141,49 @@ public class WebDetailActivity extends BaseActivity {
                 return true;
             }
         });
-        webDetaiWebView.loadUrl(url);
+        if (detailType==DetailType.HERO)
+            webDetaiWebView.loadUrl(url);
+    }
+    private void getHtmlContentWithSelector(String endString,String selectorString){
+        Connection conn = Jsoup.connect("http://wiki.joyme.com/cq/"+endString);
+        //Log.e("dadahe",  "dodo: "+url );
+        conn.header("User-Agent", "Mozilla/5.0 (X11; Linux x86_64; rv:32.0) Gecko/    20100101 Firefox/32.0");
+        Document doc = null;
+        try {
+            doc = conn.get();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (doc==null){
+            Log.e("getHtmlContent", "有问题");
+        }else{
+            String htmlEquipmentContent = doc.select(selectorString).first().toString();
+            //Log.e("dadahe", htmlEquipmentContent+"");
+            doc.select("div").remove();
+            doc.select("body").first().append(htmlEquipmentContent);
+            htmlContent = doc.toString();
+            /*
+            if(htmlContent.length() > 4000) {
+                for(int i=0;i<htmlContent.length();i+=4000){
+                    if(i+4000<htmlContent.length())
+                        Log.e("dadahe"+i,htmlContent.substring(i, i+4000));
+                    else
+                        Log.e("dadahe"+i,htmlContent.substring(i, htmlContent.length()));
+                }
+            } else
+                Log.i("dadahe","fuck"+doc.toString());
+            */
+            handler.sendEmptyMessage(GETHTMLCONTENTSUCCESS);
+        }
+
+    }
+
+    private void getHtmlContent(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                getHtmlContentWithSelector(endString,selectorString);
+            }
+        }).start();
     }
 }

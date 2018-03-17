@@ -1,5 +1,6 @@
 package com.qunter.crusadersquestwiki.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -25,7 +26,7 @@ import cn.bmob.v3.update.UpdateStatus;
 public class SettingListActivity extends BaseActivity implements View.OnClickListener {
     private ImageView settingListBackBtn;
     private TextView settingListTitle;
-    private LinearLayout settingListUpgradeBtn;
+    private LinearLayout settingListUpgradeBtn,settingListAboutBtn;
     private BmobUpdateAgent bmobUpdateAgent;
     @Override
     protected void initVariablesAndService() {
@@ -44,6 +45,9 @@ public class SettingListActivity extends BaseActivity implements View.OnClickLis
 
         settingListUpgradeBtn = (LinearLayout) findViewById(R.id.settinglist_upgrade_Btn);
         settingListUpgradeBtn.setOnClickListener(this);
+
+        settingListAboutBtn = (LinearLayout) findViewById(R.id.settinglist_about_Btn);
+        settingListAboutBtn.setOnClickListener(this);
     }
 
     @Override
@@ -58,6 +62,11 @@ public class SettingListActivity extends BaseActivity implements View.OnClickLis
                 //检查更新
                 PermissionManager.with(this).permissions("android.permission.READ_PHONE_STATE").addRequestCode(1).request();
                 bmobUpdateAgent.forceUpdate(getApplicationContext());
+                break;
+            case R.id.settinglist_about_Btn:
+                Intent intent = new Intent(getApplicationContext(),AboutActivity.class);
+                intent.putExtra("title",getString(R.string.SettingListAboutTitle));
+                startActivity(intent);
                 break;
         }
     }

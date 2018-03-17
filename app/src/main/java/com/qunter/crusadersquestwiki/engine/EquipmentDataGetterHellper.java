@@ -44,6 +44,7 @@ public class EquipmentDataGetterHellper implements DataGetter {
             Elements filterfinal = filterthen.get(1).select("tr");
             Elements filterfinalal = filterfinal.select("td");
             String xml = filterfinalal.toString();
+            /*
             Log.e("getDataFromUrl", "do");
             if(xml.length() > 4000) {
                 for(int i=0;i<xml.length();i+=4000){
@@ -54,7 +55,7 @@ public class EquipmentDataGetterHellper implements DataGetter {
                 }
             } else
                 Log.e("getDataFromUrl",xml);
-
+            */
 
             //Log.e("hehe", filterPicUrl.toString() );
 
@@ -69,7 +70,7 @@ public class EquipmentDataGetterHellper implements DataGetter {
                 data.setEquipmentASPD(filterfinalal.get(i*7+5).text());
                 data.setEquipmentForWho(filterfinalal.get(i*7+6).text());
                 data.setEquipmentDetailUrl(filterfinalal.get(i*7+1).select("a").get(0).absUrl("href"));
-                Log.e("setEquipmentForWho", filterfinalal.get(i*7+1).absUrl("href")+"");
+                //Log.e("setEquipmentForWho", filterfinalal.get(i*7+1).absUrl("href")+"");
                 datas.add(data);
             }
 
