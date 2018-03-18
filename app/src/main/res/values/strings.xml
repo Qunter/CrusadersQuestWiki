@@ -19,6 +19,7 @@
     <string name="SettingListUpgradeTitle">在线升级</string>
     <string name="SettingListAboutTitle">关于我们</string>
 
+    <string name="heroHtmlContentSelectorString">div.row.hero-info</string>
     <string name="equimentHtmlContentSelectorString">div.hero-info-block.hero-info-block-frame.hero-sbw</string>
     <string name="skillHtmlContentSelectorString">div.skill_info</string>
 

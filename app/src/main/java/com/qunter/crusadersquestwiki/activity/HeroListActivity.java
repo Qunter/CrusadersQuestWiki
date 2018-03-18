@@ -47,7 +47,8 @@ public class HeroListActivity extends BaseActivity implements DataCallback<HeroD
                             startActivity(new Intent(getApplicationContext(),WebDetailActivity.class)
                                     .putExtra("url",datas.get(position).getHeroDetailUrl())
                                     .putExtra("title",datas.get(position).getHeroName())
-                                    .putExtra("detailType", WebDetailActivity.DetailType.HERO));
+                                    .putExtra("detailType", WebDetailActivity.DetailType.HERO)
+                                    .putExtra("endString",datas.get(position).getHeroName()));
                         }
                     });
                     recyclerView.setAdapter(adapter);

@@ -65,7 +65,7 @@ public class HeroDataGetterHellper implements DataGetter{
             for(Element element:filterMostly){
                 data = new HeroData();
                 data.setHeroDetailUrl(element.absUrl("href"));
-                Log.e("hehe", element.toString() );
+                //Log.e("hehe", element.toString() );
                 data.setHeroName(element.attr("title").substring(3));
                 //Log.e("element",element.attr("title").substring(3));
                 data.setHeroPicUrl(element.attr("src"));

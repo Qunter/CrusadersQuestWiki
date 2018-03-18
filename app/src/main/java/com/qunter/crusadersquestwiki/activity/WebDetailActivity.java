@@ -54,6 +54,10 @@ public class WebDetailActivity extends BaseActivity {
         detailType = (DetailType) getIntent().getSerializableExtra("detailType");
         endString = getIntent().getStringExtra("endString");
         switch (detailType){
+            case HERO:
+                selectorString = getString(R.string.heroHtmlContentSelectorString);
+                getHtmlContent();
+                break;
             case EQUIPMENT:
                 selectorString = getString(R.string.equimentHtmlContentSelectorString);
                 getHtmlContent();
@@ -141,8 +145,7 @@ public class WebDetailActivity extends BaseActivity {
                 return true;
             }
         });
-        if (detailType==DetailType.HERO)
-            webDetaiWebView.loadUrl(url);
+        //webDetaiWebView.loadUrl(url);
     }
     private void getHtmlContentWithSelector(String endString,String selectorString){
         Connection conn = Jsoup.connect("http://wiki.joyme.com/cq/"+endString);
