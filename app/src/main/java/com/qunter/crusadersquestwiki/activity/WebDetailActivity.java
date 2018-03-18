@@ -33,7 +33,7 @@ public class WebDetailActivity extends BaseActivity {
     private View webdetailInterruptView;
     private ProgressBar webDetailProgressBar;
     private String url, title ,endString ,selectorString;
-    public enum DetailType {HERO,EQUIPMENT,SKILL}
+    public enum DetailType {HERO,EQUIPMENT,SKILL,SEASON2_STORY,SEASON2_CHALLENGE}
     DetailType detailType;
     private String htmlContent;
     private final int GETHTMLCONTENTSUCCESS=0x00;
@@ -49,7 +49,7 @@ public class WebDetailActivity extends BaseActivity {
     });
     @Override
     protected void initVariablesAndService() {
-        url = getIntent().getStringExtra("url");
+        //url = getIntent().getStringExtra("url");
         title = getIntent().getStringExtra("title");
         detailType = (DetailType) getIntent().getSerializableExtra("detailType");
         endString = getIntent().getStringExtra("endString");
@@ -64,6 +64,14 @@ public class WebDetailActivity extends BaseActivity {
                 break;
             case SKILL:
                 selectorString = getString(R.string.skillHtmlContentSelectorString);
+                getHtmlContent();
+                break;
+            case SEASON2_STORY:
+                selectorString = getString(R.string.season2StoryModeHtmlContentSelectorString);
+                getHtmlContent();
+                break;
+            case SEASON2_CHALLENGE:
+                selectorString = getString(R.string.season2ChallengeModeHtmlContentSelectorString);
                 getHtmlContent();
                 break;
         }
@@ -164,6 +172,8 @@ public class WebDetailActivity extends BaseActivity {
             //Log.e("dadahe", htmlEquipmentContent+"");
             doc.select("div").remove();
             doc.select("body").first().append(htmlEquipmentContent);
+            if (detailType==DetailType.SEASON2_STORY||detailType==DetailType.SEASON2_CHALLENGE)
+                doc.select("div").get(1).remove();
             htmlContent = doc.toString();
             /*
             if(htmlContent.length() > 4000) {

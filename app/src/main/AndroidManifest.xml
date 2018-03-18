@@ -39,6 +39,8 @@
         <activity android:name=".activity.EquipmentListActivity"/>
         <!-- 技能图鉴界面 -->
         <activity android:name=".activity.SkillListActivity"/>
+        <!-- S2相关界面 -->
+        <activity android:name=".activity.Season2ListActivity"/>
         <!-- 设置界面 -->
         <activity android:name=".activity.SettingListActivity"/>
         <!-- 关于我们界面 -->
@@ -48,7 +50,8 @@
             android:name="cn.bmob.v3.update.UpdateDialogActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <provider
-            android:authorities="cn.bmob.update.fileprovider"           android:name="android.support.v4.content.FileProvider"
+            android:authorities="cn.bmob.update.fileprovider"
+            android:name="android.support.v4.content.FileProvider"
             android:grantUriPermissions="true"
             android:exported="false">
             <meta-data

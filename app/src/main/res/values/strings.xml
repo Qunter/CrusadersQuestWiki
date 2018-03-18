@@ -1,11 +1,19 @@
 <resources>
-    <string name="app_name">CrusadersQuestWiki</string>
+    <string name="app_name">克鲁赛德战记wiki</string>
     <string name="main_title">克鲁赛德战记wiki</string>
 
     <string name="hero_list_title">勇士图鉴</string>
     <string name="equipment_list_title">装备图鉴</string>
     <string name="skill_list_title">技能图鉴</string>
     <string name="setting_list_title">设置</string>
+    <string name="season2_list_title">S2相关</string>
+
+    <string name="season2StotyModeTitle">S2剧情模式攻略</string>
+    <string name="season2ChallengeModeTitle">挑战模式攻略</string>
+    <string name="season2StoryModeName">影子与少女</string>
+    <string name="season2ChallengeModeName">树星的幕后</string>
+    <string name="season2StoryModeUrl">http://wiki.joyme.com/cq/影子与少女</string>
+    <string name="season2ChallengeModeUrl">http://wiki.joyme.com/cq/树星的幕后</string>
     
     <string name="hero_info_title_default">勇士</string>
 
@@ -22,6 +30,8 @@
     <string name="heroHtmlContentSelectorString">div.row.hero-info</string>
     <string name="equimentHtmlContentSelectorString">div.hero-info-block.hero-info-block-frame.hero-sbw</string>
     <string name="skillHtmlContentSelectorString">div.skill_info</string>
+    <string name="season2StoryModeHtmlContentSelectorString">div.mw-content-ltr</string>
+    <string name="season2ChallengeModeHtmlContentSelectorString">div.</string>
 
     <string name="aboutContent">\t克鲁赛德战记wiki是一时兴起想制作出来帮助更多热爱CQ的玩家在移动端更加方便查阅攻略而制作的，在此声明：\n\t1，本人不会以此APP本身盈利，本APP完全免费且不会加入任何对本人产生盈利的广告。\n\t2，本APP全部数据为着迷网wiki克鲁塞德专区摘录而来，如官方（着迷或是CQ运营）认为此举不妥可通知我停止APP的制作（当然，如果官方老爷希望合作，也可以联系我^_^）。\n\t3，本APP中插图及图标均为网上共享资源或是游戏内资源，如有作者或相关人士认为此举冒犯了权益，请通知我替换素材。\n\n\t我的贴吧ID及QQID：曜战\n\n\t我的QQ号为：504505485\n\n\t仅以本APP献给爱CQ的你！</string>
 
