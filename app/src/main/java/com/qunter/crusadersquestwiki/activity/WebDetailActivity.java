@@ -174,6 +174,7 @@ public class WebDetailActivity extends BaseActivity {
             doc.select("body").first().append(htmlEquipmentContent);
             if (detailType==DetailType.SEASON2_STORY||detailType==DetailType.SEASON2_CHALLENGE)
                 doc.select("div").get(1).remove();
+            doc.select("a").removeAttr("href");
             htmlContent = doc.toString();
             /*
             if(htmlContent.length() > 4000) {
