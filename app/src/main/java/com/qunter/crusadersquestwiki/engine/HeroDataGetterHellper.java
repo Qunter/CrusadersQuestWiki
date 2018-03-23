@@ -73,7 +73,8 @@ public class HeroDataGetterHellper implements DataGetter{
                 //Log.e("url", "do");
                 datas.add(data);
             }
-            for(int i=0;i<filterRate.size()/5;i++){
+            for(int i=0;i<filterPicUrl.size();i++){
+                //Log.e("filterRate.size()", filterPicUrl.size()+"");
                 datas.get(i).setHeroPicUrl(filterPicUrl.get(i).attr("src"));
                 //Log.e("url", filterPicUrl.get(i).attr("src"));
                 for(int j=0;j<5;j++){

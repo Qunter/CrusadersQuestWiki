@@ -33,7 +33,7 @@ public class WebDetailActivity extends BaseActivity {
     private View webdetailInterruptView;
     private ProgressBar webDetailProgressBar;
     private String url, title ,endString ,selectorString;
-    public enum DetailType {HERO,EQUIPMENT,SKILL,SEASON2_STORY,SEASON2_CHALLENGE}
+
     DetailType detailType;
     private String htmlContent;
     private final int GETHTMLCONTENTSUCCESS=0x00;
@@ -199,5 +199,27 @@ public class WebDetailActivity extends BaseActivity {
                 getHtmlContentWithSelector(endString,selectorString);
             }
         }).start();
+    }
+
+    public enum DetailType {
+        HERO("HERO"),EQUIPMENT("EQUIPMENT"),SKILL("SKILL"),SEASON2_STORY("SEASON2_STORY"),SEASON2_CHALLENGE("SEASON2_CHALLENGE");
+        private String typeString;
+        DetailType(String typeString){
+            this.typeString = typeString;
+        }
+
+        public static DetailType fromTypeString(String typeString) {
+            for (DetailType type : DetailType.values()) {
+                if (type.getTypeString().equals(typeString)) {
+                    return type;
+                }
+            }
+            return null;
+        }
+
+        public String getTypeString() {
+            return this.typeString;
+        }
+
     }
 }
