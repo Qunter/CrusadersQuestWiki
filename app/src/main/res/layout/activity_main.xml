@@ -11,12 +11,14 @@
         android:layout_height="wrap_content"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
         <android.support.v7.widget.Toolbar
+            android:id="@+id/main_search_bar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:theme="@style/Theme.AppCompat.Light"
+            app:theme="@style/ToolbarStyle"
             android:background="@color/main_actionbar">
             <TextView
+                android:id="@+id/main_title_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

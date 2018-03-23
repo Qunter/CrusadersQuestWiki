@@ -8,6 +8,10 @@
     <string name="setting_list_title">设置</string>
     <string name="season2_list_title">S2相关</string>
 
+    <string name="menu_search_title">请输入关键词进行搜索</string>
+    <string name="menu_search"></string>
+    <string name="menu_setting"></string>
+
     <string name="season2StotyModeTitle">S2剧情模式攻略</string>
     <string name="season2ChallengeModeTitle">挑战模式攻略</string>
     <string name="season2StoryModeName">影子与少女</string>
