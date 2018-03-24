@@ -29,6 +29,8 @@
         </activity>
         <!-- 主界面 -->
         <activity android:name=".activity.MainActivity"/>
+        <!-- 搜索界面 -->
+        <activity android:name=".activity.SearchActivity"/>
         <!-- 英雄图鉴界面 -->
         <activity android:name=".activity.HeroTypeListActivity"/>
         <!-- 英雄详情界面 -->

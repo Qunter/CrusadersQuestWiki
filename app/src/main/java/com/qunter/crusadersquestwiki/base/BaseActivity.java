@@ -1,7 +1,5 @@
 package com.qunter.crusadersquestwiki.base;
 
-import android.app.Activity;
-import android.app.ActivityOptions;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -11,7 +9,6 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-import java.util.HashMap;
 
 /**
  * Created by Administrator on 2017/9/15.
@@ -75,4 +72,5 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.finish();
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
+
 }

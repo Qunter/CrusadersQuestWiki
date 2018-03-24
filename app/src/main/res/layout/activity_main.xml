@@ -11,20 +11,25 @@
         android:layout_height="wrap_content"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
         <android.support.v7.widget.Toolbar
-            android:id="@+id/main_search_bar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             app:theme="@style/ToolbarStyle"
             android:background="@color/main_actionbar">
             <TextView
-                android:id="@+id/main_title_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/main_title"
                 android:textSize="22sp"
                 android:textColor="@color/titleColor" />
+            <ImageView
+                android:id="@+id/main_search_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginEnd="25dp"
+                android:src="@drawable/ic_search_black_24dp"/>
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
     <LinearLayout

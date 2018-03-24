@@ -5,7 +5,6 @@ import cn.bmob.v3.BmobObject;
 /**
  * Created by ldk on 3/23/18.
  */
-
 public class KeywordData extends BmobObject{
     private String keyword;
     private String truekey;
