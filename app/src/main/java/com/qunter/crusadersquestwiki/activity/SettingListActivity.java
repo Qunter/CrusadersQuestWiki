@@ -48,6 +48,23 @@ public class SettingListActivity extends BaseActivity implements View.OnClickLis
 
         settingListAboutBtn = (LinearLayout) findViewById(R.id.settinglist_about_Btn);
         settingListAboutBtn.setOnClickListener(this);
+
+        BmobUpdateAgent.setUpdateListener(new BmobUpdateListener() {
+
+            @Override
+            public void onUpdateReturned(int updateStatus, UpdateResponse updateInfo) {
+                // TODO Auto-generated method stub
+                //根据updateStatus来判断更新是否成功
+                Log.e("bmob","成功："+updateStatus);
+                switch (updateStatus){
+                    case 0:
+                        break;
+                    case 1:
+                        Toast.makeText(getApplicationContext(),"当前版本已是最新版本",Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+        });
     }
 
     @Override

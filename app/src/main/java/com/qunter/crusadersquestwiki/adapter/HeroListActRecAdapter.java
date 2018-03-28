@@ -46,7 +46,6 @@ public class HeroListActRecAdapter extends RecyclerView.Adapter<HeroListActRecAd
         holder.hero_rank_2.setImageResource(getRankImageResource(datas.get(position).getHeroRate()[1]));
         holder.hero_rank_3.setImageResource(getRankImageResource(datas.get(position).getHeroRate()[2]));
         holder.hero_rank_4.setImageResource(getRankImageResource(datas.get(position).getHeroRate()[3]));
-        holder.hero_rank_5.setImageResource(getRankImageResource(datas.get(position).getHeroRate()[4]));
         if(onItemClickListener != null){
             //为ItemView设置监听器
             holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -67,7 +66,7 @@ public class HeroListActRecAdapter extends RecyclerView.Adapter<HeroListActRecAd
     static class ViewHolder extends RecyclerView.ViewHolder{
         private ImageView hero_img;
         private TextView hero_name;
-        private ImageView hero_rank_1,hero_rank_2,hero_rank_3,hero_rank_4,hero_rank_5;
+        private ImageView hero_rank_1,hero_rank_2,hero_rank_3,hero_rank_4;
         public ViewHolder(View itemView) {
             super(itemView);
             hero_img = (ImageView) itemView.findViewById(R.id.item_herolist_img_iv);
@@ -76,7 +75,6 @@ public class HeroListActRecAdapter extends RecyclerView.Adapter<HeroListActRecAd
             hero_rank_2 = (ImageView) itemView.findViewById(R.id.item_herolist_rank_2_iv);
             hero_rank_3 = (ImageView) itemView.findViewById(R.id.item_herolist_rank_3_iv);
             hero_rank_4 = (ImageView) itemView.findViewById(R.id.item_herolist_rank_4_iv);
-            hero_rank_5 = (ImageView) itemView.findViewById(R.id.item_herolist_rank_5_iv);
         }
     }
 

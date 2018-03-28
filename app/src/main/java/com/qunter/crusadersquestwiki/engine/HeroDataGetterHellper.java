@@ -46,20 +46,24 @@ public class HeroDataGetterHellper implements DataGetter{
             //获取到勇士头像url
             Elements filterPicUrl = filterMostly.select("img[data-file-height=72]");
             //获取到勇士评级
-            Elements filterRate = filterBase.select("img[data-file-height=30]");
-            /*
-            String file_paths = filterBase.toString();
+            Elements filterRate = filterBase.select("div[class=hero-list]").get(0).select("tbody");
+            filterRate.select("td[class=mwiki-hide]").remove();
+            filterRate.select("td[style=text-align:left]").remove();
+            filterRate = filterRate.select("td");
 
-            if(file_paths.length() > 4000) {
-                for(int i=0;i<file_paths.length();i+=4000){
-                    if(i+4000<file_paths.length())
-                        Log.i("getDataFromUrl"+i,file_paths.substring(i, i+4000));
+            String file_paths = filterBase.toString();
+            String fileee = filterRate.toString();
+
+            if(fileee.length() > 4000) {
+                for(int i=0;i<fileee.length();i+=4000){
+                    if(i+4000<fileee.length())
+                        Log.i("getDataFromUrl"+i,fileee.substring(i, i+4000));
                     else
-                        Log.i("getDataFromUrl"+i,file_paths.substring(i, file_paths.length()));
+                        Log.i("getDataFromUrl"+i,fileee.substring(i, fileee.length()));
                 }
             } else
-                Log.i("getDataFromUrl",file_paths);
-            */
+                Log.i("getDataFromUrl",fileee);
+
             //Log.e("hehe", filterPicUrl.toString() );
             HeroData data;
             for(Element element:filterMostly){
@@ -73,13 +77,17 @@ public class HeroDataGetterHellper implements DataGetter{
                 //Log.e("url", "do");
                 datas.add(data);
             }
+
             for(int i=0;i<filterPicUrl.size();i++){
                 //Log.e("filterRate.size()", filterPicUrl.size()+"");
                 datas.get(i).setHeroPicUrl(filterPicUrl.get(i).attr("src"));
                 //Log.e("url", filterPicUrl.get(i).attr("src"));
-                for(int j=0;j<5;j++){
-                    datas.get(i).setHeroRate(j,Integer.parseInt(filterRate.get(i*5+j).attr("alt").substring(10,11)));
-                    //Log.e("element",filterRate.get(i*5+j).attr("alt").substring(10,11));
+                for(int j=0;j<4;j++){
+                    if (filterRate.get(i*4+j).select("img").size()!=0){
+                        datas.get(i).setHeroRate(j,Integer.parseInt(filterRate.get(i*4+j).select("img").get(0).attr("alt").substring(10,11)));
+                        Log.e("element",filterRate.get(i*4+j).select("img").get(0).attr("alt").substring(10,11)+"");
+                    }
+                    //Log.e("fuck",filterRate.get(i*4+j).text());
                 }
 
             }

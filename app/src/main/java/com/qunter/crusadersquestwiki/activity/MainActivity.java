@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.bmob.v3.Bmob;
+import cn.bmob.v3.update.BmobUpdateAgent;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
     private RecyclerView mainRecyclerView;
@@ -26,6 +27,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void initVariablesAndService() {
         Bmob.initialize(this, "0b29944baa0b71a4a563ffedf4cc5b6b");
+        BmobUpdateAgent.update(this);
         for(int i=0;i<itemPicDatas.length;i++){
             MainActRecItemData data = new MainActRecItemData();
             data.setIv_imgResource(itemPicDatas[i]);

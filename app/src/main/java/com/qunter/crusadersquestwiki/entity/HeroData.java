@@ -9,7 +9,7 @@ public class HeroData {
     private int HeroLevel;
     //暂无法高效获取
     private int HeroType;
-    private int[] HeroRate = new int[5];
+    private int[] HeroRate = new int[4];
     private String HeroDetailUrl;
     private String HeroPicUrl;
 
