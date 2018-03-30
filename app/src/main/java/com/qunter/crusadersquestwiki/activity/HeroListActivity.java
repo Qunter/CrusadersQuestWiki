@@ -20,6 +20,8 @@ import com.qunter.crusadersquestwiki.entity.HeroData;
 import com.qunter.crusadersquestwiki.entity.KeywordData;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import cn.bmob.v3.BmobBatch;
@@ -32,14 +34,26 @@ import cn.bmob.v3.listener.QueryListListener;
  * Created by Administrator on 2017/10/8.
  */
 
-public class HeroListActivity extends BaseActivity implements DataCallback<HeroData> {
+public class HeroListActivity extends BaseActivity implements DataCallback<HeroData>, View.OnClickListener {
     private RecyclerView recyclerView;
     private ImageView heroListBackBtn;
-    private TextView heroListTitle;
+    private TextView heroListTitle,heroListOverallBtn,heroListPlotBtn,heroListArenaBtn,heroListChallengeBtn;
     private HeroDataGetterHellper heroDataGetterHellper = new HeroDataGetterHellper();
     private HeroListActRecAdapter adapter;
     private List<HeroData> datas = new ArrayList<HeroData>();
     private String heroType = "null";
+    private enum SORTTYPE {
+        OVERALL(0),PLOT(1),ARENA(2),CHALLENGE(3);
+        int index;
+        SORTTYPE(int index){
+            this.index = index;
+        }
+        public int getTypeIndex() {
+            return this.index;
+        }
+
+    }
+    private boolean[] sortState = new boolean[4];
     private final int PUSHDATAINTORECYCLERVIEW = 0x00;
     private Handler handler = new Handler(){
         @Override
@@ -81,12 +95,20 @@ public class HeroListActivity extends BaseActivity implements DataCallback<HeroD
         heroListTitle.setText(heroType+getString(R.string.hero_list_title));
 
         heroListBackBtn = (ImageView) findViewById(R.id.herolist_back_iv);
-        heroListBackBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        heroListBackBtn.setOnClickListener(this);
+
+        heroListOverallBtn = (TextView) findViewById(R.id.herolist_overallBtn);
+        heroListOverallBtn.setOnClickListener(this);
+
+        heroListPlotBtn = (TextView) findViewById(R.id.herolist_plotBtn);
+        heroListPlotBtn.setOnClickListener(this);
+
+        heroListArenaBtn = (TextView) findViewById(R.id.herolist_arenaBtn);
+        heroListArenaBtn.setOnClickListener(this);
+
+        heroListChallengeBtn = (TextView) findViewById(R.id.herolist_challengeBtn);
+        heroListChallengeBtn.setOnClickListener(this);
+
     }
 
     /**
@@ -144,4 +166,37 @@ public class HeroListActivity extends BaseActivity implements DataCallback<HeroD
             }
         });
     }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.herolist_back_iv:
+                finish();
+                break;
+            case R.id.herolist_overallBtn:
+
+                break;
+            case R.id.herolist_plotBtn:
+                break;
+            case R.id.herolist_arenaBtn:
+                break;
+            case R.id.herolist_challengeBtn:
+                break;
+        }
+    }
+
+    private void sortDatas(SORTTYPE sorttype){
+        switch (sorttype.getTypeIndex()){
+            case 0:
+
+                Collections.sort(datas, new Comparator<HeroData>() {
+                    @Override
+                    public int compare(HeroData o1, HeroData o2) {
+                        return o2.getHeroRate()[0]-o1.getHeroRate()[0];
+                    }
+                });
+                break;
+        }
+    }
+
 }
