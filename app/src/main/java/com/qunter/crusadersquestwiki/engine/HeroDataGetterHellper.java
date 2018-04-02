@@ -53,7 +53,7 @@ public class HeroDataGetterHellper implements DataGetter{
 
             String file_paths = filterBase.toString();
             String fileee = filterRate.toString();
-
+            /*
             if(fileee.length() > 4000) {
                 for(int i=0;i<fileee.length();i+=4000){
                     if(i+4000<fileee.length())
@@ -63,7 +63,7 @@ public class HeroDataGetterHellper implements DataGetter{
                 }
             } else
                 Log.i("getDataFromUrl",fileee);
-
+            */
             //Log.e("hehe", filterPicUrl.toString() );
             HeroData data;
             for(Element element:filterMostly){
@@ -85,7 +85,7 @@ public class HeroDataGetterHellper implements DataGetter{
                 for(int j=0;j<4;j++){
                     if (filterRate.get(i*4+j).select("img").size()!=0){
                         datas.get(i).setHeroRate(j,Integer.parseInt(filterRate.get(i*4+j).select("img").get(0).attr("alt").substring(10,11)));
-                        Log.e("element",filterRate.get(i*4+j).select("img").get(0).attr("alt").substring(10,11)+"");
+                        //Log.e("element",filterRate.get(i*4+j).select("img").get(0).attr("alt").substring(10,11)+"");
                     }
                     //Log.e("fuck",filterRate.get(i*4+j).text());
                 }

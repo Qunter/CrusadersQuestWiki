@@ -2,7 +2,6 @@ package com.qunter.crusadersquestwiki.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -17,7 +16,6 @@ import com.qunter.crusadersquestwiki.engine.permission.PermissionManager;
 import cn.bmob.v3.listener.BmobUpdateListener;
 import cn.bmob.v3.update.BmobUpdateAgent;
 import cn.bmob.v3.update.UpdateResponse;
-import cn.bmob.v3.update.UpdateStatus;
 
 /**
  * Created by ldk on 3/9/18.
@@ -82,7 +80,7 @@ public class SettingListActivity extends BaseActivity implements View.OnClickLis
                 break;
             case R.id.settinglist_about_Btn:
                 Intent intent = new Intent(getApplicationContext(),AboutActivity.class);
-                intent.putExtra("title",getString(R.string.SettingListAboutTitle));
+                intent.putExtra("title",getString(R.string.settingListAboutTitle));
                 startActivity(intent);
                 break;
         }

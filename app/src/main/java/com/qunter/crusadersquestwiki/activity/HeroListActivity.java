@@ -1,6 +1,7 @@
 package com.qunter.crusadersquestwiki.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -37,7 +38,7 @@ import cn.bmob.v3.listener.QueryListListener;
 public class HeroListActivity extends BaseActivity implements DataCallback<HeroData>, View.OnClickListener {
     private RecyclerView recyclerView;
     private ImageView heroListBackBtn;
-    private TextView heroListTitle,heroListOverallBtn,heroListPlotBtn,heroListArenaBtn,heroListChallengeBtn;
+    private TextView heroListTitle,heroListResetSortBtn,heroListOverallBtn,heroListPlotBtn,heroListArenaBtn,heroListChallengeBtn;
     private HeroDataGetterHellper heroDataGetterHellper = new HeroDataGetterHellper();
     private HeroListActRecAdapter adapter;
     private List<HeroData> datas = new ArrayList<HeroData>();
@@ -61,18 +62,7 @@ public class HeroListActivity extends BaseActivity implements DataCallback<HeroD
             super.handleMessage(msg);
             switch (msg.what){
                 case PUSHDATAINTORECYCLERVIEW:
-                    adapter = new HeroListActRecAdapter(getApplicationContext(),datas);
-                    adapter.setOnItemClickListener(new HeroListActRecAdapter.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(View view, int position) {
-                            startActivity(new Intent(getApplicationContext(),WebDetailActivity.class)
-                                    .putExtra("url",datas.get(position).getHeroDetailUrl())
-                                    .putExtra("title",datas.get(position).getHeroName())
-                                    .putExtra("detailType", WebDetailActivity.DetailType.HERO)
-                                    .putExtra("endString",datas.get(position).getHeroName()));
-                        }
-                    });
-                    recyclerView.setAdapter(adapter);
+                    loadNewDataToRec(datas);
                     break;
             }
         }
@@ -96,6 +86,9 @@ public class HeroListActivity extends BaseActivity implements DataCallback<HeroD
 
         heroListBackBtn = (ImageView) findViewById(R.id.herolist_back_iv);
         heroListBackBtn.setOnClickListener(this);
+
+        heroListResetSortBtn = (TextView) findViewById(R.id.herolist_resetSortBtn);
+        heroListResetSortBtn.setOnClickListener(this);
 
         heroListOverallBtn = (TextView) findViewById(R.id.herolist_overallBtn);
         heroListOverallBtn.setOnClickListener(this);
@@ -173,30 +166,91 @@ public class HeroListActivity extends BaseActivity implements DataCallback<HeroD
             case R.id.herolist_back_iv:
                 finish();
                 break;
+            case R.id.herolist_resetSortBtn:
+                loadNewDataToRec(datas);
+                resetAllTv();
+                break;
             case R.id.herolist_overallBtn:
-
+                loadNewDataToRec(sortDatas(SORTTYPE.OVERALL,datas));
+                resetAllTv();
+                setOneTv(heroListOverallBtn,sortState[SORTTYPE.OVERALL.getTypeIndex()]);
                 break;
             case R.id.herolist_plotBtn:
+                loadNewDataToRec(sortDatas(SORTTYPE.PLOT,datas));
+                resetAllTv();
+                setOneTv(heroListOverallBtn,sortState[SORTTYPE.PLOT.getTypeIndex()]);
                 break;
             case R.id.herolist_arenaBtn:
+                loadNewDataToRec(sortDatas(SORTTYPE.ARENA,datas));
+                resetAllTv();
+                setOneTv(heroListOverallBtn,sortState[SORTTYPE.ARENA.getTypeIndex()]);
                 break;
             case R.id.herolist_challengeBtn:
+                loadNewDataToRec(sortDatas(SORTTYPE.CHALLENGE,datas));
+                resetAllTv();
+                setOneTv(heroListOverallBtn,sortState[SORTTYPE.CHALLENGE.getTypeIndex()]);
                 break;
         }
     }
 
-    private void sortDatas(SORTTYPE sorttype){
-        switch (sorttype.getTypeIndex()){
-            case 0:
+    /**
+     * 对勇士数据进行排序
+     */
+    private List<HeroData> sortDatas(SORTTYPE sorttype,List<HeroData> datas){
+        List<HeroData> newDatas = new ArrayList<>(datas);
+        final int index = sorttype.getTypeIndex();
+        Collections.sort(newDatas, new Comparator<HeroData>() {
+            @Override
+            public int compare(HeroData o1, HeroData o2) {
+                if (!sortState[index]){
+                    return o1.getHeroRate()[index] == o2.getHeroRate()[index] ? 0 : (o1.getHeroRate()[index] > o2.getHeroRate()[index] ? -1 : 1);
+                }else{
+                    return o1.getHeroRate()[index] == o2.getHeroRate()[index] ? 0 : (o1.getHeroRate()[index] > o2.getHeroRate()[index] ? 1 : -1);
+                }
+            }
 
-                Collections.sort(datas, new Comparator<HeroData>() {
-                    @Override
-                    public int compare(HeroData o1, HeroData o2) {
-                        return o2.getHeroRate()[0]-o1.getHeroRate()[0];
-                    }
-                });
-                break;
+        });
+        for (int i=0;i<sortState.length;i++){
+            if (i==index)
+                sortState[index] = !sortState[index];
+            else
+                sortState[i] = false;
         }
+        return newDatas;
     }
-
+    /**
+     * 让recycleview加载新数据
+     */
+    private void loadNewDataToRec(final List<HeroData> datas){
+        adapter = new HeroListActRecAdapter(getApplicationContext(),datas);
+        adapter.setOnItemClickListener(new HeroListActRecAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                startActivity(new Intent(getApplicationContext(),WebDetailActivity.class)
+                        .putExtra("url",datas.get(position).getHeroDetailUrl())
+                        .putExtra("title",datas.get(position).getHeroName())
+                        .putExtra("detailType", WebDetailActivity.DetailType.HERO)
+                        .putExtra("endString",datas.get(position).getHeroName()));
+            }
+        });
+        recyclerView.setAdapter(adapter);
+    }
+    /**
+     * 恢复其他Tv特效
+     */
+    private void resetAllTv(){
+        heroListOverallBtn.setTextColor(Color.BLACK);
+        heroListPlotBtn.setTextColor(Color.BLACK);
+        heroListArenaBtn.setTextColor(Color.BLACK);
+        heroListChallengeBtn.setTextColor(Color.BLACK);
+    }
+    /**
+     * 设置单个Tv特效
+     */
+    private void setOneTv(TextView tv,boolean ifUpSort){
+        if (ifUpSort)
+            tv.setTextColor(Color.RED);
+        else
+            tv.setTextColor(Color.GREEN);
+    }
 }

@@ -32,6 +32,13 @@
                 android:src="@drawable/ic_search_black_24dp"/>
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/declaractionContent"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

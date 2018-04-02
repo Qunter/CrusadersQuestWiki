@@ -22,8 +22,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private RecyclerView mainRecyclerView;
     private ImageView mainSearchBtn;
     private List<MainActRecItemData> datas = new ArrayList<MainActRecItemData>();
-    private int[] itemPicDatas = {R.drawable.ic_hero,R.drawable.ic_equipment,R.drawable.ic_skill,R.drawable.ic_season2,R.drawable.ic_setting};
-    private int[] itemContentDatas = {R.string.hero_list_title,R.string.equipment_list_title,R.string.skill_list_title,R.string.season2_list_title,R.string.setting_list_title};
+    private int[] itemPicDatas = {R.drawable.ic_hero,R.drawable.ic_equipment,R.drawable.ic_skill,R.drawable.ic_season2,R.drawable.ic_other,R.drawable.ic_setting};
+    private int[] itemContentDatas = {R.string.hero_list_title,R.string.equipment_list_title,R.string.skill_list_title,R.string.season2_list_title,R.string.other_list_title,R.string.setting_list_title};
     @Override
     protected void initVariablesAndService() {
         Bmob.initialize(this, "0b29944baa0b71a4a563ffedf4cc5b6b");
@@ -71,6 +71,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 startActivity(new Intent(getApplicationContext(),Season2ListActivity.class));
                 break;
             case 4:
+                break;
+            case 5:
                 startActivity(new Intent(getApplicationContext(),SettingListActivity.class));
                 break;
         }
