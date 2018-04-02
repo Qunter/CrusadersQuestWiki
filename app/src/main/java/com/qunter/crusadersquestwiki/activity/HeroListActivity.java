@@ -178,17 +178,17 @@ public class HeroListActivity extends BaseActivity implements DataCallback<HeroD
             case R.id.herolist_plotBtn:
                 loadNewDataToRec(sortDatas(SORTTYPE.PLOT,datas));
                 resetAllTv();
-                setOneTv(heroListOverallBtn,sortState[SORTTYPE.PLOT.getTypeIndex()]);
+                setOneTv(heroListPlotBtn,sortState[SORTTYPE.PLOT.getTypeIndex()]);
                 break;
             case R.id.herolist_arenaBtn:
                 loadNewDataToRec(sortDatas(SORTTYPE.ARENA,datas));
                 resetAllTv();
-                setOneTv(heroListOverallBtn,sortState[SORTTYPE.ARENA.getTypeIndex()]);
+                setOneTv(heroListArenaBtn,sortState[SORTTYPE.ARENA.getTypeIndex()]);
                 break;
             case R.id.herolist_challengeBtn:
                 loadNewDataToRec(sortDatas(SORTTYPE.CHALLENGE,datas));
                 resetAllTv();
-                setOneTv(heroListOverallBtn,sortState[SORTTYPE.CHALLENGE.getTypeIndex()]);
+                setOneTv(heroListChallengeBtn,sortState[SORTTYPE.CHALLENGE.getTypeIndex()]);
                 break;
         }
     }

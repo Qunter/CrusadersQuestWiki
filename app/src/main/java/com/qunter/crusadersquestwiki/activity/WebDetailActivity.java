@@ -74,6 +74,10 @@ public class WebDetailActivity extends BaseActivity {
                 selectorString = getString(R.string.season2ChallengeModeHtmlContentSelectorString);
                 getHtmlContent();
                 break;
+            case RUNEANDWEAPONIMPRINT:
+                selectorString = getString(R.string.RuneAndWeaponImprintHtmlContentSelectorString);
+                getHtmlContent();
+                break;
         }
 
     }
@@ -202,7 +206,7 @@ public class WebDetailActivity extends BaseActivity {
     }
 
     public enum DetailType {
-        HERO("HERO"),EQUIPMENT("EQUIPMENT"),SKILL("SKILL"),SEASON2_STORY("SEASON2_STORY"),SEASON2_CHALLENGE("SEASON2_CHALLENGE");
+        HERO("HERO"),EQUIPMENT("EQUIPMENT"),SKILL("SKILL"),SEASON2_STORY("SEASON2_STORY"),SEASON2_CHALLENGE("SEASON2_CHALLENGE"),RUNEANDWEAPONIMPRINT("RUNEANDWEAPONIMPRINT");
         private String typeString;
         DetailType(String typeString){
             this.typeString = typeString;

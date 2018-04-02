@@ -71,6 +71,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 startActivity(new Intent(getApplicationContext(),Season2ListActivity.class));
                 break;
             case 4:
+                startActivity(new Intent(getApplicationContext(),OtherListActivity.class));
                 break;
             case 5:
                 startActivity(new Intent(getApplicationContext(),SettingListActivity.class));
