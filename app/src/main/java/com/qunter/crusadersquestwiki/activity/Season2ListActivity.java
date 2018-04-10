@@ -50,12 +50,12 @@ public class Season2ListActivity extends BaseActivity implements View.OnClickLis
                 break;
             case R.id.item_season2List_storyBtn:
                 intent = new Intent(getApplicationContext(),WebDetailActivity.class);
-                intent.putExtra("title",getString(R.string.season2StoryModeName)).putExtra("detailType",WebDetailActivity.DetailType.SEASON2_STORY).putExtra("endString",getString(R.string.season2StoryModeName));
+                intent.putExtra("title",getString(R.string.season2StoryModeName)).putExtra("endString",getString(R.string.season2StoryModeName)).putExtra("selectorString",getString(R.string.season2StoryModeHtmlContentSelectorString));
                 startActivity(intent);
                 break;
             case R.id.item_season2List_challengeBtn:
                 intent = new Intent(getApplicationContext(),WebDetailActivity.class);
-                intent.putExtra("title",getString(R.string.season2ChallengeModeName)).putExtra("detailType",WebDetailActivity.DetailType.SEASON2_CHALLENGE).putExtra("endString",getString(R.string.season2ChallengeModeName));
+                intent.putExtra("title",getString(R.string.season2ChallengeModeName)).putExtra("endString",getString(R.string.season2ChallengeModeName)).putExtra("selectorString",getString(R.string.season2ChallengeModeHtmlContentSelectorString));
                 startActivity(intent);
                 break;
         }

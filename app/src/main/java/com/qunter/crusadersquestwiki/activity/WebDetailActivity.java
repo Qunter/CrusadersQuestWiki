@@ -51,8 +51,11 @@ public class WebDetailActivity extends BaseActivity {
     protected void initVariablesAndService() {
         //url = getIntent().getStringExtra("url");
         title = getIntent().getStringExtra("title");
-        detailType = (DetailType) getIntent().getSerializableExtra("detailType");
+        //detailType = (DetailType) getIntent().getSerializableExtra("detailType");
         endString = getIntent().getStringExtra("endString");
+        selectorString = getIntent().getStringExtra("selectorString");
+        getHtmlContent();
+        /*
         switch (detailType){
             case HERO:
                 selectorString = getString(R.string.heroHtmlContentSelectorString);
@@ -79,6 +82,7 @@ public class WebDetailActivity extends BaseActivity {
                 getHtmlContent();
                 break;
         }
+        */
 
     }
 
@@ -122,31 +126,6 @@ public class WebDetailActivity extends BaseActivity {
         webDetaiWebView.setWebViewClient(new WebViewClient(){
             @Override
             public void onPageFinished(WebView view, String url) {
-                switch (detailType){
-                    case HERO:
-                        break;
-                    case EQUIPMENT:
-                        /*
-                        String fun = "javascript:function getClass(parent,sClass){var aEle=parent.getElementsByTagName('div');var aResult=[];var i=0;for(i<0; i<aEle.length; i++){if(aEle[i].className==sClass){aResult.push(aEle[i]);}};return aResult;}";
-                        String fun2 = "javascript:function hideOther() {getClass(document,'firstHeading2 page-header nry-h1 fn-clear')[0].style.display='none';getClass(document,'col-md-4')[0].style.display='none';getClass(document,'col-md-8')[0].style.display='none';getClass(document,'hero-info-block hero-info-block-frame hero-info-skill')[0].style.display='none';getClass(document,'hero-info-block hero-info-block-frame hero-info-spskill')[0].style.display='none';getClass(document,'hero-info-block hero-info-block-frame')[3].style.display='none';getClass(document,'hero-info-block hero-info-block-frame')[4].style.display='none';getClass(document,'date-tab clearfix')[0].style.display='none';getClass(document,'hero-info-block hero-info-block-frame')[0].style.display='none';}";
-                        String fun3 = "javascript:hideOther();";
-                        */
-                        /*
-                        String funfinal = "function getClass(parent,sClass){var aEle=parent.getElementsByTagName('div');var aResult=[];var i=0;for(i<0; i<aEle.length; i++){if(aEle[i].className==sClass){aResult.push(aEle[i]);}};return aResult;}function hideOther() {getClass(document,'firstHeading2 page-header nry-h1 fn-clear')[0].style.display='none';getClass(document,'col-md-4')[0].style.display='none';getClass(document,'hero-info-block hero-info-stat')[0].style.display='none';getClass(document,'hero-info-block hero-info-block-frame hero-info-skill')[0].style.display='none';getClass(document,'hero-info-block hero-info-block-frame hero-info-spskill')[0].style.display='none';getClass(document,'date-tab clearfix')[0].style.display='none';}();";
-                        webDetaiWebView.evaluateJavascript(funfinal, new ValueCallback<String>() {
-                            @Override
-                            public void onReceiveValue(String value) {
-                                Log.e("dadahe", "do"+value );
-                            }
-                        });
-                        */
-                        //webDetaiWebView.loadUrl(fun);
-                        //webDetaiWebView.loadUrl(fun2);
-                        //webDetaiWebView.loadUrl(fun3);
-                        break;
-                    case SKILL:
-                        break;
-                }
                 super.onPageFinished(view, url);
                 webdetailInterruptView.setVisibility(View.GONE);
             }
@@ -160,9 +139,12 @@ public class WebDetailActivity extends BaseActivity {
         //webDetaiWebView.loadUrl(url);
     }
     private void getHtmlContentWithSelector(String endString,String selectorString){
-        Connection conn = Jsoup.connect("http://wiki.joyme.com/cq/"+endString);
-        //Log.e("dadahe",  "dodo: "+url );
-        conn.header("User-Agent", "Mozilla/5.0 (X11; Linux x86_64; rv:32.0) Gecko/    20100101 Firefox/32.0");
+        //Connection conn = Jsoup.connect("http://wiki.woxihuan.com/cq/"+endString);
+        Connection conn = Jsoup.connect("http://wiki.woxihuan.com/cq/"+endString);
+        //Connection conn = Jsoup.connect("http://wiki.woxihuan.com/cq/%E4%BD%BF%E5%BE%92%E7%9A%84%E5%A4%8D%E6%B4%BB");
+        Log.e("dadahe",  "dodo: "+endString );
+        //conn.header("User-Agent", "Mozilla/5.0 (X11; Linux x86_64; rv:32.0) Gecko/    20100101 Firefox/32.0");
+        //conn.header("User-Agent", "Mozilla/4.0(compatible;MSIE7.0;WindowsNT5.1;360SE");
         Document doc = null;
         try {
             doc = conn.get();
@@ -172,8 +154,8 @@ public class WebDetailActivity extends BaseActivity {
         if (doc==null){
             Log.e("getHtmlContent", "有问题");
         }else{
+            Log.e("dadahe", doc+"");
             String htmlEquipmentContent = doc.select(selectorString).first().toString();
-            //Log.e("dadahe", htmlEquipmentContent+"");
             doc.select("div").remove();
             doc.select("body").first().append(htmlEquipmentContent);
             if (detailType==DetailType.SEASON2_STORY||detailType==DetailType.SEASON2_CHALLENGE)

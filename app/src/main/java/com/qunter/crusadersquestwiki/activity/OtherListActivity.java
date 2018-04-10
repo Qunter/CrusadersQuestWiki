@@ -46,7 +46,7 @@ public class OtherListActivity extends BaseActivity implements View.OnClickListe
                 break;
             case R.id.otherlist_runeAndWeaponImprint_Btn:
                 intent = new Intent(getApplicationContext(),WebDetailActivity.class);
-                intent.putExtra("title",getString(R.string.otherListRuneAndWeaponImprintTitle)).putExtra("detailType",WebDetailActivity.DetailType.SEASON2_CHALLENGE).putExtra("endString",getString(R.string.otherListRuneAndWeaponImprintTitle));
+                intent.putExtra("title",getString(R.string.otherListRuneAndWeaponImprintTitle)).putExtra("endString",getString(R.string.otherListRuneAndWeaponImprintTitle)).putExtra("selectorString",getString(R.string.RuneAndWeaponImprintHtmlContentSelectorString));
                 startActivity(intent);
                 break;
         }

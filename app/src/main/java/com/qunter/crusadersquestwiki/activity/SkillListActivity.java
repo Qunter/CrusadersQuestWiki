@@ -53,10 +53,9 @@ public class SkillListActivity extends BaseActivity implements DataCallback<Skil
                         @Override
                         public void onItemClick(View view, int position) {
                             startActivity(new Intent(getApplicationContext(),WebDetailActivity.class)
-                                    .putExtra("url",datas.get(position).getSkillDetailUrl())
                                     .putExtra("title",datas.get(position).getSkillName())
-                                    .putExtra("detailType",WebDetailActivity.DetailType.SKILL)
-                                    .putExtra("endString",datas.get(position).getSkillName()));
+                                    .putExtra("endString",datas.get(position).getSkillName())
+                                    .putExtra("selectorString",getString(R.string.skillHtmlContentSelectorString)));
                         }
                     });
                     recyclerView.setAdapter(adapter);
