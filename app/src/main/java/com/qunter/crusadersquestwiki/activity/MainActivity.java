@@ -1,21 +1,29 @@
 package com.qunter.crusadersquestwiki.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.qunter.crusadersquestwiki.R;
 import com.qunter.crusadersquestwiki.adapter.MainActRecAdapter;
 import com.qunter.crusadersquestwiki.base.BaseActivity;
 import com.qunter.crusadersquestwiki.entity.MainActRecItemData;
+import com.qunter.crusadersquestwiki.entity.WikiUrlType;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.bmob.v3.Bmob;
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.QueryListener;
 import cn.bmob.v3.update.BmobUpdateAgent;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
@@ -28,6 +36,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     protected void initVariablesAndService() {
         Bmob.initialize(this, "0b29944baa0b71a4a563ffedf4cc5b6b");
         BmobUpdateAgent.update(this);
+        ifUserWikiTemporaryUrl();
         for(int i=0;i<itemPicDatas.length;i++){
             MainActRecItemData data = new MainActRecItemData();
             data.setIv_imgResource(itemPicDatas[i]);
@@ -42,7 +51,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mainRecyclerView = (RecyclerView) findViewById(R.id.main_list_rec);
         //设置并列2行的layoutManager
         mainRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
-        MainActRecAdapter adapter=new MainActRecAdapter(datas);
+        MainActRecAdapter adapter=new MainActRecAdapter(this,datas);
         adapter.setOnItemClickListener(new MainActRecAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
@@ -68,10 +77,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         .putExtra("listTitle",getString(itemContentDatas[position])));
                 break;
             case 3:
-                startActivity(new Intent(getApplicationContext(),StoryModeListActivity.class));
+                startActivity(new Intent(getApplicationContext(),StoryModeListActivity.class).putExtra("listTitle",getString(R.string.StotyMode_list_title)));
                 break;
             case 4:
-                startActivity(new Intent(getApplicationContext(),Season2ListActivity.class));
+                //startActivity(new Intent(getApplicationContext(),Season2ListActivity.class));
+                startActivity(new Intent(getApplicationContext(),WebDetailActivity.class).putExtra("title",getString(R.string.season2ChallengeModeName)).putExtra("endString",getString(R.string.season2ChallengeModeName)).putExtra("selectorString",getString(R.string.season2ChallengeModeHtmlContentSelectorString)));
                 break;
             case 5:
                 startActivity(new Intent(getApplicationContext(),OtherListActivity.class));
@@ -90,5 +100,27 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 startActivity(new Intent(getApplicationContext(),SearchActivity.class));
                 break;
         }
+    }
+    /**
+     * 查询是否使用wiki临时网页头部
+     */
+    private void ifUserWikiTemporaryUrl(){
+        BmobQuery<WikiUrlType> query = new BmobQuery<WikiUrlType>();
+        query.getObject("YDjM4447", new QueryListener<WikiUrlType>() {
+            @Override
+            public void done(WikiUrlType object, BmobException e) {
+                if(e==null){
+                    //获得playerName的信息
+                    Log.e("done: ", ""+object.getIfTemporary());
+                    SharedPreferences sharedPreferences = getSharedPreferences("IfTemporary", 0);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putBoolean("IfTemporary", object.getIfTemporary());
+                    editor.apply();
+                }else{
+                    Log.i("bmob","失败："+e.getMessage()+","+e.getErrorCode());
+                }
+            }
+
+        });
     }
 }

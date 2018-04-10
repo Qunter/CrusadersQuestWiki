@@ -1,5 +1,6 @@
 package com.qunter.crusadersquestwiki.activity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -34,7 +35,7 @@ public class WebDetailActivity extends BaseActivity {
     private ProgressBar webDetailProgressBar;
     private String url, title ,endString ,selectorString;
 
-    DetailType detailType;
+    //DetailType detailType;
     private String htmlContent;
     private final int GETHTMLCONTENTSUCCESS=0x00;
     private Handler handler = new Handler(new Handler.Callback() {
@@ -140,10 +141,17 @@ public class WebDetailActivity extends BaseActivity {
     }
     private void getHtmlContentWithSelector(String endString,String selectorString){
         //Connection conn = Jsoup.connect("http://wiki.woxihuan.com/cq/"+endString);
-        Connection conn = Jsoup.connect("http://wiki.woxihuan.com/cq/"+endString);
+        Connection conn;
+        SharedPreferences sharedPreferences = getSharedPreferences("IfTemporary", 0);
+        boolean IfTemporary = sharedPreferences.getBoolean("IfTemporary",false);
+        if (IfTemporary){
+            conn = Jsoup.connect(getString(R.string.temporaryUrl)+endString);
+        }else {
+            conn = Jsoup.connect(getString(R.string.trueUrl)+endString);
+        }
         //Connection conn = Jsoup.connect("http://wiki.woxihuan.com/cq/%E4%BD%BF%E5%BE%92%E7%9A%84%E5%A4%8D%E6%B4%BB");
-        Log.e("dadahe",  "dodo: "+endString );
-        //conn.header("User-Agent", "Mozilla/5.0 (X11; Linux x86_64; rv:32.0) Gecko/    20100101 Firefox/32.0");
+        //Log.e("dadahe",  "dodo: "+endString );
+        conn.header("User-Agent", "Mozilla/5.0 (X11; Linux x86_64; rv:32.0) Gecko/    20100101 Firefox/32.0");
         //conn.header("User-Agent", "Mozilla/4.0(compatible;MSIE7.0;WindowsNT5.1;360SE");
         Document doc = null;
         try {
@@ -154,14 +162,29 @@ public class WebDetailActivity extends BaseActivity {
         if (doc==null){
             Log.e("getHtmlContent", "有问题");
         }else{
-            Log.e("dadahe", doc+"");
-            String htmlEquipmentContent = doc.select(selectorString).first().toString();
+            //Log.e("dadahe", doc+"");
+            String htmlContent = doc.select(selectorString).first().toString();
+            /*
+            if(htmlContent.length() > 4000) {
+                for(int i=0;i<htmlContent.length();i+=4000){
+                    if(i+4000<htmlContent.length())
+                        Log.i("dadahe"+i,htmlContent.substring(i, i+4000));
+                    else
+                        Log.i("dadahe"+i,htmlContent.substring(i, htmlContent.length()));
+                }
+            } else
+                Log.i("dadahe",htmlContent);
+            */
             doc.select("div").remove();
-            doc.select("body").first().append(htmlEquipmentContent);
+            doc.select("body").first().append(htmlContent);
+            /*
             if (detailType==DetailType.SEASON2_STORY||detailType==DetailType.SEASON2_CHALLENGE)
                 doc.select("div").get(1).remove();
+            */
+            if (selectorString.equals(getString(R.string.season2StoryModeHtmlContentSelectorString)))
+                doc.select("div").get(1).remove();
             doc.select("a").removeAttr("href");
-            htmlContent = doc.toString();
+            this.htmlContent = doc.toString();
             /*
             if(htmlContent.length() > 4000) {
                 for(int i=0;i<htmlContent.length();i+=4000){
@@ -186,7 +209,7 @@ public class WebDetailActivity extends BaseActivity {
             }
         }).start();
     }
-
+    /*
     public enum DetailType {
         HERO("HERO"),EQUIPMENT("EQUIPMENT"),SKILL("SKILL"),SEASON2_STORY("SEASON2_STORY"),SEASON2_CHALLENGE("SEASON2_CHALLENGE"),RUNEANDWEAPONIMPRINT("RUNEANDWEAPONIMPRINT");
         private String typeString;
@@ -208,4 +231,5 @@ public class WebDetailActivity extends BaseActivity {
         }
 
     }
+    */
 }

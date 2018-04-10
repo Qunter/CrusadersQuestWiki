@@ -28,11 +28,11 @@
     <string name="StotyMode_chapterN3_title">第三章 使徒的复活</string>
     <string name="StotyMode_chapterN4_title">第四章 使徒的复活</string>
     <string name="StotyMode_chapterN5_title">第五章 北风的记忆</string>
-    <string name="StotyMode_chapterH5_title">第五章 北风的记忆（困难）</string>
+    <string name="StotyMode_chapterH5_title">第五章 北风的记忆(困难)</string>
     <string name="StotyMode_chapterN6_title">第六章 帝国的军团</string>
-    <string name="StotyMode_chapterH6_title">第六章 帝国的军团（困难）</string>
+    <string name="StotyMode_chapterH6_title">第六章 帝国的军团(困难)</string>
     <string name="StotyMode_chapterN7_title">第七章 光之继承者</string>
-    <string name="StotyMode_chapterH7_title">第七章 光之继承者（困难）</string>
+    <string name="StotyMode_chapterH7_title">第七章 光之继承者(困难)</string>
     <string name="StotyMode_chapterN8_title">第八章 影子与少女</string>
     
     <string name="hero_info_title_default">勇士</string>
@@ -70,12 +70,12 @@
     <string name="StotyModeChapterN3HtmlContentSelectorString">div.chapter3</string>
     <string name="StotyModeChapterN4HtmlContentSelectorString">div.chapter4</string>
     <string name="StotyModeChapterN5HtmlContentSelectorString">div.chapter5</string>
-    <string name="StotyModeChapterH5HtmlContentSelectorString">div.chapter5</string>
+    <string name="StotyModeChapterH5HtmlContentSelectorString">div.mw-content-ltr</string>
     <string name="StotyModeChapterN6HtmlContentSelectorString">div.chapter6</string>
     <string name="StotyModeChapterH6HtmlContentSelectorString">div.chapter6</string>
     <string name="StotyModeChapterN7HtmlContentSelectorString">div.chapter7</string>
     <string name="StotyModeChapterH7HtmlContentSelectorString">div.chapter7</string>
-    <string name="StotyModeChapterN8HtmlContentSelectorString">div.chapter8</string>
+    <string name="StotyModeChapterN8HtmlContentSelectorString">div.mw-content-ltr</string>
     <string name="season2StoryModeHtmlContentSelectorString">div.mw-content-ltr</string>
     <string name="season2ChallengeModeHtmlContentSelectorString">div.mw-content-ltr</string>
 
@@ -93,4 +93,6 @@
     <string name="declaractionContent">数据基本来自着迷网克鲁赛德WIKI专区(已获授权)\n希望更多的有识之士能够为WIKI做出贡献</string>
     <string name="aboutContent">\t克鲁赛德战记wiki是一时兴起想制作出来帮助更多热爱CQ的玩家在移动端更加方便查阅攻略而制作的，在此声明：\n\t1，本人不会以此APP本身盈利，本APP完全免费且不会加入任何对本人产生盈利的广告。\n\t2，本APP全部数据为着迷网wiki克鲁塞德专区摘录而来，wiki方已经知晓且授权，如有机会也期待更深入的合作。\n\t3，本APP中插图及图标均为网上共享资源或是游戏内资源，如有作者或相关人士认为此举冒犯了权益，请通知我替换素材。\n\n\t我的贴吧ID及QQID：曜战\n\n\t我的QQ号为：504505485\n\n\t仅以本APP献给爱CQ的你！</string>
 
+    <string name="temporaryUrl">http://wiki.woxihuan.com/cq/</string>
+    <string name="trueUrl">http://wiki.joyme.com/cq/</string>
 </resources>

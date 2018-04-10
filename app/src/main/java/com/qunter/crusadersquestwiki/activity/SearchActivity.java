@@ -83,10 +83,22 @@ public class SearchActivity extends BaseActivity {
         searchList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                startActivity(new Intent(getApplicationContext(),WebDetailActivity.class)
-                        .putExtra("title",datas.get(position).getKeyword())
-                        .putExtra("detailType", WebDetailActivity.DetailType.fromTypeString(datas.get(position).getEnterType()))
-                        .putExtra("endString",datas.get(position).getTruekey()));
+                Intent intent = new Intent(getApplicationContext(),WebDetailActivity.class);
+                switch (datas.get(position).getEnterType()){
+                    case "HERO":
+                        intent.putExtra("selectorString",getString(R.string.heroHtmlContentSelectorString));
+                        break;
+                    case "EQUIPMENT":
+                        intent.putExtra("selectorString",getString(R.string.equimentHtmlContentSelectorString));
+                        break;
+                    case "SKILL":
+                        intent.putExtra("selectorString",getString(R.string.skillHtmlContentSelectorString));
+                        break;
+                }
+                intent.putExtra("title",datas.get(position).getKeyword())
+                        //.putExtra("detailType", WebDetailActivity.DetailType.fromTypeString())
+                        .putExtra("endString",datas.get(position).getTruekey());
+                startActivity(intent);
                 finish();
             }
         });
