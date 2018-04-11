@@ -1,6 +1,7 @@
 package com.qunter.crusadersquestwiki.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -94,7 +95,13 @@ public class EquipmentListActivity extends BaseActivity implements DataCallback<
         new Thread(new Runnable() {
             @Override
             public void run() {
-                equipmentDataGetterHellper.getDataAndSendCallback(heroType,EquipmentListActivity.this);
+                SharedPreferences sharedPreferences = getSharedPreferences("IfTemporary", 0);
+                boolean IfTemporary = sharedPreferences.getBoolean("IfTemporary",false);
+                if (IfTemporary){
+                    equipmentDataGetterHellper.getDataAndSendCallback(getString(R.string.temporaryUrl),heroType,EquipmentListActivity.this);
+                }else {
+                    equipmentDataGetterHellper.getDataAndSendCallback(getString(R.string.trueUrl),heroType,EquipmentListActivity.this);
+                }
             }
         }).start();
     }

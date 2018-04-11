@@ -1,6 +1,7 @@
 package com.qunter.crusadersquestwiki.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -19,6 +20,8 @@ import com.qunter.crusadersquestwiki.engine.DataCallback;
 import com.qunter.crusadersquestwiki.engine.HeroDataGetterHellper;
 import com.qunter.crusadersquestwiki.entity.HeroData;
 import com.qunter.crusadersquestwiki.entity.KeywordData;
+
+import org.jsoup.Jsoup;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -111,7 +114,13 @@ public class HeroListActivity extends BaseActivity implements DataCallback<HeroD
         new Thread(new Runnable() {
             @Override
             public void run() {
-                heroDataGetterHellper.getDataAndSendCallback(heroType,HeroListActivity.this);
+                SharedPreferences sharedPreferences = getSharedPreferences("IfTemporary", 0);
+                boolean IfTemporary = sharedPreferences.getBoolean("IfTemporary",false);
+                if (IfTemporary){
+                    heroDataGetterHellper.getDataAndSendCallback(getString(R.string.temporaryUrl),heroType,HeroListActivity.this);
+                }else {
+                    heroDataGetterHellper.getDataAndSendCallback(getString(R.string.trueUrl),heroType,HeroListActivity.this);
+                }
             }
         }).start();
     }

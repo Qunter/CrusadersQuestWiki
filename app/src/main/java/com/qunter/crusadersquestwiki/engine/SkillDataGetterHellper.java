@@ -22,8 +22,8 @@ public class SkillDataGetterHellper implements DataGetter {
     /**
      * 使用jsoup获取数据
      */
-    private void getDataFromUrlAndSave(String endString){
-        String url = "http://wiki.joyme.com/cq/"+endString+"特殊技能";
+    private void getDataFromUrlAndSave(String wikiUrlHead,String endString){
+        String url = wikiUrlHead+endString+"特殊技能";
         Connection conn = Jsoup.connect(url);
         // 修改http包中的header,伪装成浏览器进行抓取
         conn.header("User-Agent", "Mozilla/5.0 (X11; Linux x86_64; rv:32.0) Gecko/    20100101 Firefox/32.0");
@@ -78,8 +78,8 @@ public class SkillDataGetterHellper implements DataGetter {
     }
 
     @Override
-    public void getDataAndSendCallback(String endString, DataCallback callback) {
-        getDataFromUrlAndSave(endString);
+    public void getDataAndSendCallback(String wikiUrlHead,String endString, DataCallback callback) {
+        getDataFromUrlAndSave(wikiUrlHead,endString);
         callback.afterGetData(datas);
     }
 }

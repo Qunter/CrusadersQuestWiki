@@ -25,8 +25,8 @@ public class EquipmentDataGetterHellper implements DataGetter {
      * http://wiki.joyme.com/cq/%E5%89%91%E5%A3%AB%E7%B2%BE%E6%B7%AC%E6%AD%A6%E5%99%A8%E5%88%97%E8%A1%A8
      * http://wiki.joyme.com/cq/剑士精淬武器列表
      */
-    private void getDataFromUrlAndSave(String endString){
-        String url = "http://wiki.joyme.com/cq/"+endString+"精淬武器列表";
+    private void getDataFromUrlAndSave(String wikiUrlHead,String endString){
+        String url = wikiUrlHead+endString+"精淬武器列表";
         Connection conn = Jsoup.connect(url);
         // 修改http包中的header,伪装成浏览器进行抓取
         conn.header("User-Agent", "Mozilla/5.0 (X11; Linux x86_64; rv:32.0) Gecko/    20100101 Firefox/32.0");
@@ -80,8 +80,8 @@ public class EquipmentDataGetterHellper implements DataGetter {
     }
 
     @Override
-    public void getDataAndSendCallback(String endString, DataCallback callback) {
-        getDataFromUrlAndSave(endString);
+    public void getDataAndSendCallback(String wikiUrlHead,String endString, DataCallback callback) {
+        getDataFromUrlAndSave(wikiUrlHead,endString);
         callback.afterGetData(datas);
     }
 }

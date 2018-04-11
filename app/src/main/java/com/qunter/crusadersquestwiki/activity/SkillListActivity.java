@@ -1,6 +1,7 @@
 package com.qunter.crusadersquestwiki.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -95,7 +96,13 @@ public class SkillListActivity extends BaseActivity implements DataCallback<Skil
         new Thread(new Runnable() {
             @Override
             public void run() {
-                skillDataGetterHellper.getDataAndSendCallback(heroType,SkillListActivity.this);
+                SharedPreferences sharedPreferences = getSharedPreferences("IfTemporary", 0);
+                boolean IfTemporary = sharedPreferences.getBoolean("IfTemporary",false);
+                if (IfTemporary){
+                    skillDataGetterHellper.getDataAndSendCallback(getString(R.string.temporaryUrl),heroType,SkillListActivity.this);
+                }else {
+                    skillDataGetterHellper.getDataAndSendCallback(getString(R.string.trueUrl),heroType,SkillListActivity.this);
+                }
             }
         }).start();
     }
