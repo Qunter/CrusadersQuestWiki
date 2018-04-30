@@ -43,8 +43,6 @@
         <activity android:name=".activity.SkillListActivity"/>
         <!-- 剧情相关界面-->
         <activity android:name=".activity.StoryModeListActivity"/>
-        <!-- S2相关界面 -->
-        <activity android:name=".activity.Season2ListActivity"/>
         <!-- 其他界面 -->
         <activity android:name=".activity.OtherListActivity"/>
         <!-- 设置界面 -->

@@ -30,7 +30,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private RecyclerView mainRecyclerView;
     private ImageView mainSearchBtn;
     private List<MainActRecItemData> datas = new ArrayList<MainActRecItemData>();
-    private int[] itemPicDatas = {R.drawable.ic_hero,R.drawable.ic_equipment,R.drawable.ic_skill,R.drawable.ic_season2,R.drawable.ic_season2,R.drawable.ic_other,R.drawable.ic_setting};
+    private int[] itemPicDatas = {R.drawable.ic_hero,R.drawable.ic_equipment,R.drawable.ic_skill,R.drawable.ic_challenge_mode,R.drawable.ic_challenge_mode,R.drawable.ic_other,R.drawable.ic_setting};
     private int[] itemContentDatas = {R.string.hero_list_title,R.string.equipment_list_title,R.string.skill_list_title,R.string.StotyMode_list_title,R.string.ChallengeMode_list_title,R.string.other_list_title,R.string.setting_list_title};
     @Override
     protected void initVariablesAndService() {
@@ -80,7 +80,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 startActivity(new Intent(getApplicationContext(),StoryModeListActivity.class).putExtra("listTitle",getString(R.string.StotyMode_list_title)));
                 break;
             case 4:
-                //startActivity(new Intent(getApplicationContext(),Season2ListActivity.class));
                 startActivity(new Intent(getApplicationContext(),WebDetailActivity.class).putExtra("title",getString(R.string.season2ChallengeModeName)).putExtra("endString",getString(R.string.season2ChallengeModeName)).putExtra("selectorString",getString(R.string.season2ChallengeModeHtmlContentSelectorString)));
                 break;
             case 5:

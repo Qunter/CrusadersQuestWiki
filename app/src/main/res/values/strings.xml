@@ -7,9 +7,8 @@
     <string name="skill_list_title">技能图鉴</string>
     <string name="StotyMode_list_title">剧情相关</string>
     <string name="ChallengeMode_list_title">挑战相关</string>
-    <string name="season2_list_title">S2相关</string>
-    <string name="other_list_title">其他</string>
-    <string name="setting_list_title">设置</string>
+    <string name="other_list_title">其他资料</string>
+    <string name="setting_list_title">设置相关</string>
 
     <string name="menu_search_title">请输入关键词进行搜索</string>
     <string name="menu_search"></string>
@@ -59,6 +58,7 @@
     <string name="settingListAboutTitle">关于我们</string>
 
     <string name="otherListGoddessTitle">女神</string>
+    <string name="otherListLordsTitle">领主</string>
     <string name="otherListRuneAndWeaponImprintTitle">符文与武器刻印</string>
     <string name="otherListUpdateBulletinTitle">最新游戏更新公告</string>
 
@@ -80,6 +80,8 @@
     <string name="season2ChallengeModeHtmlContentSelectorString">div.mw-content-ltr</string>
 
     <string name="RuneAndWeaponImprintHtmlContentSelectorString">div.mw-content-ltr</string>
+    <string name="GoddessHtmlContentSelectorString">div.hero-list</string>
+    <string name="LordsHtmlContentSelectorString">div.hero-list</string>
 
     <string name="StotyModeChapterN1T4HtmlContentEndString">使徒的复活</string>
     <string name="StotyModeChapterN5HtmlContentEndString">北风的记忆</string>

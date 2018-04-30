@@ -17,7 +17,7 @@ import com.qunter.crusadersquestwiki.base.BaseActivity;
 public class OtherListActivity extends BaseActivity implements View.OnClickListener {
     private ImageView otherListBackBtn;
     private TextView otherListTitle;
-    private LinearLayout otherListRuneAndWeaponImprintBtn;
+    private LinearLayout otherListRuneAndWeaponImprintBtn,otherListGoddessBtn,otherListLordsBtn;
     private Intent intent;
     @Override
     protected void initVariablesAndService() {
@@ -36,6 +36,12 @@ public class OtherListActivity extends BaseActivity implements View.OnClickListe
 
         otherListRuneAndWeaponImprintBtn = (LinearLayout) findViewById(R.id.otherlist_runeAndWeaponImprint_Btn);
         otherListRuneAndWeaponImprintBtn.setOnClickListener(this);
+
+        otherListGoddessBtn = (LinearLayout) findViewById(R.id.otherlist_goddess_Btn);
+        otherListGoddessBtn.setOnClickListener(this);
+
+        otherListLordsBtn = (LinearLayout) findViewById(R.id.otherlist_lords_Btn);
+        otherListLordsBtn.setOnClickListener(this);
     }
 
     @Override
@@ -49,6 +55,17 @@ public class OtherListActivity extends BaseActivity implements View.OnClickListe
                 intent.putExtra("title",getString(R.string.otherListRuneAndWeaponImprintTitle)).putExtra("endString",getString(R.string.otherListRuneAndWeaponImprintTitle)).putExtra("selectorString",getString(R.string.RuneAndWeaponImprintHtmlContentSelectorString));
                 startActivity(intent);
                 break;
+            case R.id.otherlist_goddess_Btn:
+                intent = new Intent(getApplicationContext(),WebDetailActivity.class);
+                intent.putExtra("title",getString(R.string.otherListGoddessTitle)).putExtra("endString",getString(R.string.otherListGoddessTitle)).putExtra("selectorString",getString(R.string.GoddessHtmlContentSelectorString));
+                startActivity(intent);
+                break;
+            case R.id.otherlist_lords_Btn:
+                intent = new Intent(getApplicationContext(),WebDetailActivity.class);
+                intent.putExtra("title",getString(R.string.otherListLordsTitle)).putExtra("endString",getString(R.string.otherListLordsTitle)).putExtra("selectorString",getString(R.string.LordsHtmlContentSelectorString));
+                startActivity(intent);
+                break;
+
         }
     }
 }
