@@ -4,9 +4,14 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorWhite">#FFFFFF</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorGray">#383838</color>
 
-    <color name="main_actionbar">#FFFFFF</color>
-    <color name="main_backgroundColor">#EDEDED</color>
+    <color name="tab_top_text_1">#D3D3D3</color>
+    <color name="tab_top_text_2">#D3D3D3</color>
+
+    <color name="main_actionbar">#383838</color>
+    <color name="main_backgroundColor">#E5E5E5</color>
 
     <color name="app_backgroundColor">#E5E5E5</color>
 

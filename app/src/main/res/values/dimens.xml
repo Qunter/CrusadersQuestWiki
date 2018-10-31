@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- BottomNavigation配置 -->
+    <dimen name="fixed_height">56dp</dimen> <!-- 高度 -->
+    <dimen name="fixed_icon_grid">24dp</dimen> <!-- icon大小 -->
+    <dimen name="fixed_height_top_padding_inactive">3dp</dimen> <!-- 未选中时顶部padding -->
+    <dimen name="fixed_height_top_padding_active">3dp</dimen> <!-- 选中时顶部padding -->
+    <dimen name="fixed_height_bottom_padding">5dp</dimen> <!-- 底部padding -->
+    <dimen name="fixed_label_active">12sp</dimen> <!-- 选中字体大小 -->
+    <dimen name="fixed_label_inactive">12sp</dimen> <!-- 未选中字体大小 -->
+    <item name="fixed_label_active_to_inactive_ratio" format="float" type="dimen">1</item> <!-- 默认文字大小缩放比率 -->
+    <dimen name="tab_top_fontsize">14sp</dimen>
+</resources>

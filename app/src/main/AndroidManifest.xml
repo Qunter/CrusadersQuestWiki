@@ -15,7 +15,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_launcher_icon"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
@@ -29,6 +29,8 @@
         </activity>
         <!-- 主界面 -->
         <activity android:name=".activity.MainActivity"/>
+        <!-- 主界面 -->
+        <activity android:name=".activity.MainActivity2"/>
         <!-- 搜索界面 -->
         <activity android:name=".activity.SearchActivity"/>
         <!-- 英雄图鉴界面 -->

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_actionbar"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <View
+        android:id="@+id/imageView1"
+        android:layout_width="10dp"
+        android:layout_height="7.5dp"
+        android:background="@drawable/slide"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>
