@@ -14,14 +14,6 @@ import android.widget.TextView;
 
 import com.qunter.crusadersquestwiki.R;
 import com.qunter.crusadersquestwiki.base.BaseFragment;
-import com.shizhefei.fragment.LazyFragment;
-import com.shizhefei.view.indicator.Indicator;
-import com.shizhefei.view.indicator.IndicatorViewPager;
-import com.shizhefei.view.indicator.IndicatorViewPager.IndicatorFragmentPagerAdapter;
-import com.shizhefei.view.indicator.slidebar.ColorBar;
-import com.shizhefei.view.indicator.slidebar.LayoutBar;
-import com.shizhefei.view.indicator.slidebar.ScrollBar.Gravity;
-import com.shizhefei.view.indicator.transition.OnTransitionTextListener;
 
 public class FindFragment extends BaseFragment {
 
