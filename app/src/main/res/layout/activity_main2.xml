@@ -32,17 +32,10 @@
                     android:src="@drawable/ic_search_white_24dp"/>
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.AppBarLayout>
-        <com.shizhefei.view.indicator.FixedIndicatorView
-            android:id="@+id/main_indicator"
+        <FrameLayout
+            android:id="@+id/main_content"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:background="@color/main_actionbar" />
-        <com.shizhefei.view.viewpager.SViewPager
-            android:id="@+id/main_viewpager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/main_indicator"
-            android:background="@color/main_backgroundColor" />
+            android:layout_height="match_parent"/>
     </LinearLayout>
     <com.ashokvarma.bottomnavigation.BottomNavigationBar
         android:id="@+id/bottomBar"

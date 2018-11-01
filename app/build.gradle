@@ -41,6 +41,4 @@ dependencies {
     //bmob依赖
     api 'cn.bmob.android:bmob-sdk:3.5.9'
     api 'com.android.support:support-v4:25.4.0'
-    //ViewPager依赖
-    api 'com.shizhefei:ViewPagerIndicator:1.1.7'
 }

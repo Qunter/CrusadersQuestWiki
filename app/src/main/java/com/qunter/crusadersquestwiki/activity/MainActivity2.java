@@ -4,29 +4,24 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.qunter.crusadersquestwiki.R;
 import com.qunter.crusadersquestwiki.base.BaseActivity;
-import com.shizhefei.view.indicator.FixedIndicatorView;
-import com.shizhefei.view.indicator.IndicatorViewPager;
-import com.shizhefei.view.indicator.IndicatorViewPager.IndicatorFragmentPagerAdapter;
-import com.shizhefei.view.indicator.slidebar.LayoutBar;
-import com.shizhefei.view.indicator.slidebar.ScrollBar;
-import com.shizhefei.view.indicator.transition.OnTransitionTextListener;
-import com.shizhefei.view.viewpager.SViewPager;
+import com.qunter.crusadersquestwiki.base.BaseFragment;
+import com.qunter.crusadersquestwiki.fragment.StrategiesFragment;
 
 public class MainActivity2 extends BaseActivity {
     private BottomNavigationBar bottomBar;
-    private IndicatorViewPager indicatorViewPager;
-    private FixedIndicatorView indicator;
-    private SViewPager viewPager;
-    private LayoutInflater inflate;
+    private FrameLayout content;
+    private StrategiesFragment strategiesFragment;
     @Override
     protected void initVariablesAndService() {
     }
@@ -34,35 +29,11 @@ public class MainActivity2 extends BaseActivity {
     @Override
     protected void initViews(Bundle savedInstanceState) {
         setContentView(R.layout.activity_main2);
-        indicator = (FixedIndicatorView) findViewById(R.id.main_indicator);
-        viewPager = (SViewPager) findViewById(R.id.main_viewpager);
-        inflate = LayoutInflater.from(getApplicationContext());
-        initViewPager();
         bottomBar = (BottomNavigationBar) findViewById(R.id.bottomBar);
+        content = (FrameLayout) findViewById(R.id.main_content);
         initBottomBar(bottomBar);
     }
-    /**
-     * 加载ViewPager
-     */
-    private void initViewPager(){
-        indicator.setOnTransitionListener(new OnTransitionTextListener().setColor(Color.RED, Color.GRAY));
 
-        indicatorViewPager = new IndicatorViewPager(indicator, viewPager);
-        indicatorViewPager.setAdapter(new MyAdapter(getSupportFragmentManager()));
-        //        // 禁止viewpager的滑动事件
-        //        //viewPager.setCanScroll(false);
-        //        // 设置viewpager保留界面不重新加载的页面数量
-        viewPager.setOffscreenPageLimit(4);
-
-        indicator.setScrollBar(new LayoutBar(getApplicationContext(), R.layout.layout_slidebar, ScrollBar.Gravity.CENTENT_BACKGROUND));
-
-        float unSelectSize = 10;
-        float selectSize = unSelectSize * 1.2f;
-
-        int selectColor = getResources().getColor(R.color.tab_top_text_2);
-        int unSelectColor = getResources().getColor(R.color.tab_top_text_1);
-        indicator.setOnTransitionListener(new OnTransitionTextListener().setColor(selectColor, unSelectColor).setSize(selectSize, unSelectSize));
-    }
     /**
      * 加载底部导航栏
      */
@@ -95,69 +66,31 @@ public class MainActivity2 extends BaseActivity {
         });
         bottomBar.initialise();
     }
-//    private class MyAdapter extends IndicatorFragmentPagerAdapter {
-//        private String[] tabNames = {"勇士资料", "阵容一览", "游戏资源", "阵容搭配"};
-//        private int[] tabIcons = {R.drawable.ic_about_48dp, R.drawable.ic_about_48dp, R.drawable.ic_about_48dp,
-//                R.drawable.ic_about_48dp};
-//        private LayoutInflater inflater;
-//
-//        public MyAdapter(FragmentManager fragmentManager) {
-//            super(fragmentManager);
-//            inflater = LayoutInflater.from(getApplicationContext());
-//        }
-//
-//        @Override
-//        public int getCount() {
-//            return tabNames.length;
-//        }
-//
-//        @Override
-//        public View getViewForTab(int position, View convertView, ViewGroup container) {
-//            if (convertView == null) {
-//                convertView = inflater.inflate(R.layout.tab_main, container, false);
-//            }
-//            TextView textView = (TextView) convertView;
-//            textView.setText(tabNames[position]);
-//            textView.setCompoundDrawablesWithIntrinsicBounds(0, tabIcons[position], 0, 0);
-//            return textView;
-//        }
-//
-//        @Override
-//        public Fragment getFragmentForPage(int position) {
-//            FirstLayerFragment mainFragment = new FirstLayerFragment();
-//            Bundle bundle = new Bundle();
-//            bundle.putString(FirstLayerFragment.INTENT_STRING_TABNAME, tabNames[position]);
-//            bundle.putInt(FirstLayerFragment.INTENT_INT_INDEX, position);
-//            mainFragment.setArguments(bundle);
-//            return mainFragment;
-//        }
-//    }
 
-    private class MyAdapter extends IndicatorFragmentPagerAdapter {
-        private String[] tabNames = {"勇士资料", "阵容一览", "游戏资源", "阵容搭配"};
-        public MyAdapter(FragmentManager fragmentManager) {
-            super(fragmentManager);
-        }
 
-        @Override
-        public int getCount() {
-            return 4;
-        }
+    private void initFragment(){
+        //开启事务，fragment的控制是由事务来实现的
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
-        @Override
-        public View getViewForTab(int position, View convertView, ViewGroup container) {
-            if (convertView == null) {
-                convertView = inflate.inflate(R.layout.tab_top, container, false);
-            }
-            TextView textView = (TextView) convertView;
-            textView.setText(tabNames[position]);
-            return convertView;
-        }
+//        //第一种方式（add），初始化fragment并添加到事务中，如果为null就new一个
+//        if(f1 == null){
+//            f1 = new MyFragment("消息");
+//            transaction.add(R.id.main_frame_layout, f1);
+//        }
+//        //隐藏所有fragment
+//        hideFragment(transaction);
+//        //显示需要显示的fragment
+//        transaction.show(f1);
 
-        @Override
-        public Fragment getFragmentForPage(int position) {
-            Fragment mainFragment = new Fragment();
-            return mainFragment;
+        //第二种方式(replace)，初始化fragment
+        if(strategiesFragment == null){
+            strategiesFragment = (StrategiesFragment) StrategiesFragment.getInstance();
         }
+        transaction.replace(R.id.main_content, strategiesFragment);
+
+        //提交事务
+        transaction.commit();
     }
+
+
 }
