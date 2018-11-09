@@ -17,6 +17,9 @@ import android.widget.TextView;
 import com.qunter.crusadersquestwiki.R;
 import com.qunter.crusadersquestwiki.base.BaseFragment;
 
+import static com.qunter.crusadersquestwiki.R.color.bright_foreground_disabled_material_dark;
+import static com.qunter.crusadersquestwiki.R.color.colorGray;
+
 public class StrategiesFragment extends BaseFragment implements View.OnClickListener {
     private StrategiesFragment strategiesFragment;
     private TextView tv1,tv2,tv3,tv4;
@@ -76,7 +79,7 @@ public class StrategiesFragment extends BaseFragment implements View.OnClickList
         final int move_x = metric.widthPixels/4;     // 屏幕宽度（像素）
 //        int screen_y = metric.heightPixels;   // 屏幕高度（像素）
         Animation translateAnimation = new TranslateAnimation(0,move_x*(position-index),0,0);//平移动画  从0,0,平移到100,100
-        translateAnimation.setDuration(500);//动画持续的时间为0.5s
+        translateAnimation.setDuration(200);//动画持续的时间为0.5s
         translateAnimation.setFillEnabled(true);//使其可以填充效果从而不回到原地
         translateAnimation.setFillAfter(true);//不回到起始位置
         translateAnimation.setAnimationListener(new Animation.AnimationListener() {
@@ -89,7 +92,7 @@ public class StrategiesFragment extends BaseFragment implements View.OnClickList
             public void onAnimationEnd(Animation animation) {
                 iv.clearAnimation();
                 iv.layout(iv.getLeft()+move_x*(position-index), iv.getTop(), iv.getLeft()+iv.getWidth()+move_x*(position-index), iv.getBottom());
-                tv2.setTextColor(Color.WHITE);
+                changeChooseColor(position);
                 index = position;
 //                TranslateAnimation anim = new TranslateAnimation(0,0,0,0);
 //                iv.setAnimation(anim);
@@ -105,5 +108,30 @@ public class StrategiesFragment extends BaseFragment implements View.OnClickList
         iv.startAnimation(translateAnimation);
 //        translateAnimation.startNow();//动画开始执行 放在最后即可
 
+    }
+
+    private void cleanAll(){
+        tv1.setTextColor(getResources().getColor(R.color.choose_bar_text_color_unchoose));
+        tv2.setTextColor(getResources().getColor(R.color.choose_bar_text_color_unchoose));
+        tv3.setTextColor(getResources().getColor(R.color.choose_bar_text_color_unchoose));
+        tv4.setTextColor(getResources().getColor(R.color.choose_bar_text_color_unchoose));
+    }
+
+    private void changeChooseColor(int position){
+        cleanAll();
+        switch (position){
+            case 0:
+                tv1.setTextColor(Color.WHITE);
+                break;
+            case 1:
+                tv2.setTextColor(Color.WHITE);
+                break;
+            case 2:
+                tv3.setTextColor(Color.WHITE);
+                break;
+            case 3:
+                tv4.setTextColor(Color.WHITE);
+                break;
+        }
     }
 }

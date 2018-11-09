@@ -17,7 +17,7 @@ import com.qunter.crusadersquestwiki.base.BaseActivity;
  * Created by Administrator on 2017/9/15.
  */
 
-public class SplashActivity extends BaseActivity {
+public class SplashActivityBefore extends BaseActivity {
     private ImageView trueWikiIcon;
     private LinearLayout title;
     private LinearLayout wikiIcon;
