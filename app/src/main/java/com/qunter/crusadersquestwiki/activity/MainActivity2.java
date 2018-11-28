@@ -100,9 +100,9 @@ public class MainActivity2 extends BaseActivity {
         switch (fragmentType){
             case FindFragment:
                 if (findFragment == null){
-                    //findFragment = (FindFragment) FindFragment.getInstance();
+                    findFragment = new FindFragment();
                 }
-                //transaction.replace(R.id.main_content,findFragment);
+                transaction.replace(R.id.main_content,findFragment);
                 break;
             case StrategiesFragment:
                 if (strategiesFragment == null){
@@ -112,15 +112,15 @@ public class MainActivity2 extends BaseActivity {
                 break;
             case DatasFragment:
                 if (datasFragment == null){
-                    //datasFragment = (DatasFragmentI) DatasFragmentI.getInstance();
+                    datasFragment = new DatasFragment();
                 }
-                //transaction.replace(R.id.main_content,datasFragment);
+                transaction.replace(R.id.main_content,datasFragment);
                 break;
             case AboutFrgament:
                 if (aboutFrgament == null){
-                    //aboutFrgament = (AboutFrgament) AboutFrgament.getInstance();
+                    aboutFrgament = new AboutFrgament();
                 }
-                //transaction.replace(R.id.main_content,aboutFrgament);
+                transaction.replace(R.id.main_content,aboutFrgament);
                 break;
         }
         //提交事务

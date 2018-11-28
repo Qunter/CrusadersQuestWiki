@@ -23,6 +23,7 @@ import static com.qunter.crusadersquestwiki.R.color.colorGray;
 public class StrategiesFragment extends BaseFragment implements View.OnClickListener {
     private StrategiesFragment strategiesFragment;
     private TextView tv1,tv2,tv3,tv4;
+    private String[] chooseBarTitle = new String[]{""};
     private LinearLayout iv;
     private int index = 0;
     @Nullable

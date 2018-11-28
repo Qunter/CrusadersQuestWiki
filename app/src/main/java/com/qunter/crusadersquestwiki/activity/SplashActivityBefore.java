@@ -31,7 +31,7 @@ public class SplashActivityBefore extends BaseActivity {
 
     @Override
     protected void initViews(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_splash);
+        setContentView(R.layout.activity_splash_before);
         wikiIcon = (LinearLayout) findViewById(R.id.splash_wikiIcon);
         title = (LinearLayout) findViewById(R.id.splash_trueTitle);
         trueWikiIcon = (ImageView) findViewById(R.id.splash_trueWikiIcon);
