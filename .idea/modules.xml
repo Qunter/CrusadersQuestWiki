@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/gitCache.iml" filepath="$PROJECT_DIR$/gitCache.iml" />
+      <module fileurl="file://$PROJECT_DIR$/crusadersquestwiki.iml" filepath="$PROJECT_DIR$/crusadersquestwiki.iml" />
     </modules>
   </component>
 </project>

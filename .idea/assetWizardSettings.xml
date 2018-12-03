@@ -14,8 +14,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_data_gunmen" />
-                            <entry key="sourceFile" value="C:\Users\Administrator\Desktop\枪手.svg" />
+                            <entry key="outputName" value="ic_data_warrior" />
+                            <entry key="sourceFile" value="C:\Users\Administrator\Desktop\图标\ic_data_warrior.svg" />
                           </map>
                         </option>
                       </PersistentState>
